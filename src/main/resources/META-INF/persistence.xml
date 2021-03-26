@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.2"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+
+    <!-- name="" key to connect  EntityManagerFactory-->
+    <persistence-unit name="jpa">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <properties>
+            <!-- where scan to create table -->
+            <property name="packagesToScan" value="thenhat.code"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect" /> <!-- DB Dialect -->
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
+            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/managerDB" />
+            <property name="hibernate.connection.username" value="postgres" />
+            <property name="hibernate.connection.password" value="nhat" />
+
+            <property name="hibernate.show_sql" value="true"/> <!-- Show SQL in console -->
+            <property name="hibernate.format_sql" value="true"/> <!-- Show SQL formatted -->
+            <property name="hibernate.flushMode" value="FLUSH_AUTO" />
+            <property name="hibernate.hbm2ddl.auto" value="update" /> <!-- create / create-drop / update -->
+            <property name="hibernate.id.new_generator_mappings" value="false"/>
+        </properties>
+    </persistence-unit>
+
+</persistence>
