@@ -86,6 +86,25 @@ public class LichThiController {
         return listLichThi;
     }
 
-    //== cần thêm các methods mới ở service vào controller ==
+    @GetMapping("/listLichThiOfLopHoc")
+    public List<LichThi> getListLichThiOfLopHoc(@RequestParam("maLop") Long maLop) {
+        List<LichThi> list = lichThiService.getListLichThiOfLopHocMaLop(maLop);
 
+        if(list.isEmpty()) {
+            log.info("Lop Hoc chua co lich thi");
+            return null;
+        }
+        return list;
+    }
+
+    @GetMapping("/listLichThiOfGiangVien")
+    public List<LichThi> getListLichThiOfGiangVien(@RequestParam("id") Long id) {
+        List<LichThi> list = lichThiService.getListLichThiOfGiangVienId(id);
+
+        if(list.isEmpty()) {
+            log.info("Giang Vien chua co lich thi");
+            return null;
+        }
+        return list;
+    }
 }

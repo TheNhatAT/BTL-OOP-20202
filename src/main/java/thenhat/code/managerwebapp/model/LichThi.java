@@ -22,14 +22,8 @@ public class LichThi {
     @Column(name = "ten_vien")
     private String tenVien;
 
-    //-- create a FK from PK at LopHoc(maLop)
-    @ManyToOne
-    @JoinColumn(name = "ma_lop", foreignKey = @ForeignKey(name = "ma_lop_fk"))
-    private LopHoc lopHoc;
-
-    //-- không cần sử dụng mã lớp mà dùng JoinColumn ở trên --
-//    @Column(name = "ma_lop_to_add")
-//    private Integer maLop;
+    @Column(name = "ma_lop")
+    private Integer maLop;
 
     @Column(name = "ma_hp")
     private String maHp;
@@ -67,10 +61,10 @@ public class LichThi {
     //-- cần sử dụng one to one để liên kết với giám thị trông thi --
     //-- nâng cấp lúc sau --
     @ManyToOne
-    @JoinColumn(name = "giam_thi_1", foreignKey = @ForeignKey(name = "giam_thi_1_fk"))
+    @JoinColumn(name = "giam_thi_1_id", foreignKey = @ForeignKey(name = "giam_thi_1_fk"))
     private GiangVien GiamThi1;
 
     @ManyToOne
-    @JoinColumn(name = "giam_thi_2", foreignKey = @ForeignKey(name = "giam_thi_2_fk"))
+    @JoinColumn(name = "giam_thi_2_id", foreignKey = @ForeignKey(name = "giam_thi_2_fk"))
     private GiangVien GiamThi2;
 }

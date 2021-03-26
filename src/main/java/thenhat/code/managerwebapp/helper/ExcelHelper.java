@@ -8,10 +8,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
 import thenhat.code.managerwebapp.model.LichThi;
-import thenhat.code.managerwebapp.model.LopHoc;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -22,19 +19,13 @@ import java.util.List;
 public class ExcelHelper {
     //== fields ==
 
-    @PersistenceContext
-    private static EntityManager em;
-
     //-- Microsoft office types for HTTP content streaming for .xlsx file --
     public static String TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 
     //== methods ==
     public static boolean hasExelFormat(MultipartFile file) {
         //-- check .xlsx --
-        if (!TYPE.equals(file.getContentType())) {
-            return false;
-        }
-        return true;
+        return TYPE.equals(file.getContentType());
     }
 
     public static List<LichThi> excelToLichThi(InputStream is) {
@@ -74,14 +65,7 @@ public class ExcelHelper {
                             lichThi.setTenVien(currentCell.getStringCellValue());
                             break;
                         case 1:
-                            //-- insert Lop Hoc vào Lich Thi --
-                            try {
-                                lichThi.setLopHoc(em.find(LopHoc.class, Long.valueOf((int) currentCell.getNumericCellValue())));
-                            } catch (Exception e) {
-                                //-- không lấy được lớp học từ DB --
-                                lichThi.setLopHoc(null);
-                            }
-                            //lichThi.setMaLop(Integer.valueOf((int) currentCell.getNumericCellValue()));
+                            lichThi.setMaLop((int) currentCell.getNumericCellValue());
                             break;
                         case 2:
                             lichThi.setMaHp(currentCell.getStringCellValue());
@@ -111,7 +95,7 @@ public class ExcelHelper {
                             lichThi.setKipThi(currentCell.getStringCellValue());
                             break;
                         case 11:
-                            lichThi.setSoLuongDk((Integer.valueOf((int) currentCell.getNumericCellValue())));
+                            lichThi.setSoLuongDk(((int) currentCell.getNumericCellValue()));
                             break;
                         case 12:
                             lichThi.setPhongThi(currentCell.getStringCellValue());

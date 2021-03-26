@@ -9,6 +9,7 @@ import thenhat.code.managerwebapp.model.LopHoc;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -73,7 +74,7 @@ public class LichThiDAOImpl implements LichThiDAO {
     public List<LichThi> getListLichThiOfLopHocMaLop(Long maLop) {
         log.info("start() get list lich thi of lop hoc has ma lop = {}", maLop);
         List<LichThi> list = em.createNativeQuery("SELECT * FROM lich_thi WHERE ma_lop = " + maLop.toString(), LichThi.class).getResultList();
-        log.info("finish() get list lich thi of lop hoc");
+        log.info("finish() get list lich thi of lop hoc = {}");
         em.close();
         return list;
     }
@@ -82,9 +83,8 @@ public class LichThiDAOImpl implements LichThiDAO {
     public List<LichThi> getListLichThiOfGiangVienId(Long id) {
         log.info("start() get list lich thi of giang vien has id = {}", id);
         List<LopHoc> lopHocList = em.createNativeQuery("SELECT * FROM lop_hoc WHERE giang_vien_id = " + id.toString(), LopHoc.class).getResultList();
-        List<LichThi> list = null;
-        for (LopHoc lopHoc:
-             lopHocList) {
+        List<LichThi> list = new ArrayList<>();
+        for (LopHoc lopHoc: lopHocList) {
             list.addAll(getListLichThiOfLopHocMaLop(lopHoc.getMaLop()));
         }
         return list;
