@@ -16,6 +16,7 @@ import java.util.List;
 @CrossOrigin("http://localhost:8080") //-- for configuring allowed origins --
 @RequestMapping("/api/lichThi")
 public class LichThiController {
+
     //== fields ==
     LichThiService lichThiService;
 
@@ -42,6 +43,7 @@ public class LichThiController {
         return null;
     }
 
+    //== upload and update ==
     @PostMapping("/uploadLichThi")
     public LichThi uploadLichThi(@RequestBody LichThi lichThi) {
 
