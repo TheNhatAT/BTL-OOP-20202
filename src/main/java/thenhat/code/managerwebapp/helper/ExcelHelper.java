@@ -8,6 +8,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
 import thenhat.code.managerwebapp.model.LichThi;
+import thenhat.code.managerwebapp.model.LopHoc;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -117,6 +118,56 @@ public class ExcelHelper {
             }
 
             return lichThiList;
+        } catch (IOException e) {
+            log.info("Exception is {}", e.toString());
+            throw new RuntimeException("fail to parse Excel file: " + e.getMessage());
+        }
+    }
+
+    public static List<LopHoc> exelToLopHoc(InputStream is) {
+        try {
+            Workbook workbook = new XSSFWorkbook(is);
+
+            //-- get the first sheet at file --
+            //-- can update get all sheets in the future --
+            Sheet sheet = workbook.getSheetAt(0);
+            Iterator<Row> rows = sheet.iterator();
+
+            List<LopHoc> lopHocList = new ArrayList<>();
+
+            int rowNumber = 0;
+            //-- read row by row --
+            while (rows.hasNext()) {
+                Row currentRow = rows.next();
+
+                //-- skip 2 first rows --
+                rowNumber += 2;
+
+                Iterator<Cell> cellsInRow = currentRow.iterator();
+
+                LopHoc lopHoc = new LopHoc();
+
+                int cellIndex = 0;
+                while (cellsInRow.hasNext()) {
+                    Cell currentCell = cellsInRow.next();
+                    switch (cellIndex) {
+                        case 0:
+                            lopHoc.setKyHoc(currentCell.getStringCellValue());
+                            break;
+                        case 2:
+                            lopHoc.setMaLop((long)currentCell.getNumericCellValue());
+                            break;
+                        case 18:
+                            lopHoc.setSoLuongSV((int)currentCell.getNumericCellValue());
+                            break;
+                    }
+                    cellIndex++;
+                    lopHocList.add(lopHoc);
+                }
+                workbook.close();
+            }
+
+            return lopHocList;
         } catch (IOException e) {
             log.info("Exception is {}", e.toString());
             throw new RuntimeException("fail to parse Excel file: " + e.getMessage());

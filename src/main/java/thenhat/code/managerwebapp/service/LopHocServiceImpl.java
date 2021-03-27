@@ -20,6 +20,11 @@ public class LopHocServiceImpl implements LopHocService {
     }
 
     @Override
+    public void addAllLopHoc(List<LopHoc> lopHocList) {
+        lopHocDAO.addAllLopHoc(lopHocList);
+    }
+
+    @Override
     public void addLopHoc(LopHoc lopHoc) {
         this.lopHocDAO.addLopHoc(lopHoc);
     }

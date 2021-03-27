@@ -5,6 +5,7 @@ import thenhat.code.managerwebapp.model.LopHoc;
 import java.util.List;
 
 public interface LopHocService {
+    void addAllLopHoc(List<LopHoc> lopHocList);
 
     void addLopHoc(LopHoc lopHoc);
 

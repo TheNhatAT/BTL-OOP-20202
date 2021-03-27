@@ -37,9 +37,10 @@ public class LichThiDAOImpl implements LichThiDAO {
     public void addAllLichThi(List<LichThi> lichThiList) {
         for (LichThi lichthi :
                 lichThiList) {
-            addLichThi(lichthi);
+            em.persist(lichthi);
         }
         log.info("List Lich Thi saved");
+        em.close();
     }
 
     @Override

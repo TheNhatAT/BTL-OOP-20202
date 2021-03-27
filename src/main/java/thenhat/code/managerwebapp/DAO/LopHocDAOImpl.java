@@ -18,6 +18,16 @@ public class LopHocDAOImpl implements LopHocDAO {
     @PersistenceContext
     EntityManager em;
 
+    @Override
+    public void addAllLopHoc(List<LopHoc> lopHocList) {
+        log.info("start() add all lop hoc");
+        for (LopHoc lopHoc : lopHocList) {
+            em.persist(lopHoc);
+        }
+        log.info("finish() add all lop hoc");
+        em.close();
+    }
+
     //== methods ==
     @Override
     public void addLopHoc(LopHoc lopHoc) {

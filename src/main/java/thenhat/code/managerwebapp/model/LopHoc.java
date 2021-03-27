@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "lop_hoc")
@@ -18,6 +17,12 @@ public class LopHoc {
     @Column(name = "ma_lop")
     private Long maLop;
 
+    @Column(name = "ky_hoc")
+    private String kyHoc;
+
+    @Column(name = "ten_lop")
+    private String tenLop;
+
     @Column(name = "so_luong_sinh_vien")
     private Integer soLuongSV;
 
@@ -29,5 +34,5 @@ public class LopHoc {
 
     @ManyToOne
     @JoinColumn(name = "giang_vien_id", foreignKey = @ForeignKey(name = "giang_vien_id_fk"))
-    private  GiangVien giangVien;
+    private GiangVien giangVien;
 }

@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface LopHocDAO {
 
+    void addAllLopHoc(List<LopHoc> lopHocList);
+
     void addLopHoc(LopHoc lopHoc);
 
     void updateLopHoc(LopHoc lopHoc);
