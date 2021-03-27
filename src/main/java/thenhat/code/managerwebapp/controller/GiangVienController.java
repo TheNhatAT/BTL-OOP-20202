@@ -4,11 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import thenhat.code.managerwebapp.model.GiangVien;
-import thenhat.code.managerwebapp.model.LichThi;
 import thenhat.code.managerwebapp.service.GiangVienService;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Slf4j
@@ -40,17 +37,16 @@ public class GiangVienController {
     }
 
     @PostMapping("/updateGiangVien")
-    public GiangVien updateGiangVien(GiangVien giangVien) {
+    public GiangVien updateGiangVien(@RequestBody GiangVien giangVien) {
         //== cần xử lý thêm các trường hợp ngoại lệ ==
         if (giangVien.getId() == null) {
-            log.info("upload giang vien = {}", giangVien);
+            log.info("add giang vien = {}", giangVien);
             giangVienService.addGiangVien(giangVien);
         } else {
-            log.info("giang vien before update = {}", giangVienService.getGiangVienById(giangVien.getId()));
+            log.info("update giang vien = {}", giangVien);
             giangVienService.updateGiangVien(giangVien);
-            log.info("giang vien after update = {}", giangVienService.getGiangVienById(giangVien.getId()));
         }
-        return giangVienService.getGiangVienById(giangVien.getId());
+        return giangVien;
     }
 
     @GetMapping("removeGiangVien")
@@ -61,5 +57,5 @@ public class GiangVienController {
         return giangVien;
     }
 
-    //== chưa debug ==
+    //== done debug ==
 }
