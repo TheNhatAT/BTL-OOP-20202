@@ -140,8 +140,11 @@ public class ExcelHelper {
             while (rows.hasNext()) {
                 Row currentRow = rows.next();
 
-                //-- skip 2 first rows --
-                rowNumber += 2;
+                //-- skip header --
+                if (rowNumber <= 1) {
+                    rowNumber ++;
+                    continue;
+                }
 
                 Iterator<Cell> cellsInRow = currentRow.iterator();
 
@@ -154,11 +157,19 @@ public class ExcelHelper {
                         case 0:
                             lopHoc.setKyHoc(currentCell.getStringCellValue());
                             break;
+                        case 5:
+                            lopHoc.setTenLop(currentCell.getStringCellValue());
+                            break;
                         case 2:
-                            lopHoc.setMaLop((long)currentCell.getNumericCellValue());
+                            //log.info("value of this cell is {}", currentCell.getStringCellValue());
+                            lopHoc.setMaLop(Long.valueOf(currentCell.getStringCellValue()));
                             break;
                         case 18:
-                            lopHoc.setSoLuongSV((int)currentCell.getNumericCellValue());
+                            try {
+                                lopHoc.setSoLuongSV(Integer.valueOf(currentCell.getStringCellValue()));
+                            } catch (Exception e) {
+                                break;
+                            }
                             break;
                     }
                     cellIndex++;

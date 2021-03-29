@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import thenhat.code.managerwebapp.helper.ExcelHelper;
-import thenhat.code.managerwebapp.model.LichThi;
 import thenhat.code.managerwebapp.model.LopHoc;
 import thenhat.code.managerwebapp.service.LopHocService;
 
@@ -22,20 +21,20 @@ public class LopHocController {
 
     //== constructor injection ==
     @Autowired
-    public LopHocController(LopHocService lopHocService){
+    public LopHocController(LopHocService lopHocService) {
         this.lopHocService = lopHocService;
     }
 
-    @PostMapping("uploadFile")
+    //== Lỗi ở định dạng file input == sửa sau ==
+    @PostMapping("/uploadFile")
     public List<LopHoc> uploadAllLopHoc(@RequestParam("file") MultipartFile file) {
-        if(ExcelHelper.hasExelFormat(file)) {
+        if (ExcelHelper.hasExelFormat(file)) {
             try {
                 log.info("start() upload");
                 List<LopHoc> lopHocList = ExcelHelper.exelToLopHoc(file.getInputStream());
                 lopHocService.addAllLopHoc(lopHocList);
                 return lopHocList;
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 log.info("upload failed!!!");
                 return null;
             }
@@ -44,5 +43,37 @@ public class LopHocController {
         return null;
     }
 
-    //== chưa debug Lop Hoc API ==
+    //== ok ==
+    @PostMapping("/uploadLopHoc")
+    public LopHoc uploadLopHoc(@RequestBody LopHoc lopHoc) {
+        if (lopHoc.getMaLop() == null) {
+            log.info("add lop hoc = {}", lopHoc);
+            lopHocService.addLopHoc(lopHoc);
+        } else {
+            log.info("update lop hoc = {}", lopHoc);
+            lopHocService.updateLopHoc(lopHoc);
+        }
+        return lopHoc;
+    }
+
+    //== ok ==
+    @GetMapping("/getLopHoc")
+    public LopHoc getLopHoc(@RequestParam("ma lop") Long maLop) {
+        log.info("start() get lop hoc with ma lop = {}", maLop);
+        return lopHocService.getLopHocByMaLop(maLop);
+    }
+
+    //== ok ==
+    @GetMapping("/getAllLopHoc")
+    public List<LopHoc> getAllLopHoc() {
+        log.info("start() get all lop hoc");
+        return lopHocService.getAllLopHoc();
+    }
+
+    //== chưa có data về GV ==
+    @GetMapping("/getLopHocByGiangVienId")
+    public List<LopHoc> getListLopOfGiangVien(@RequestParam("id") Long id) {
+        log.info("start() get list lop hoc of giang vien");
+        return lopHocService.getListLopHocOfGiangVienId(id);
+    }
 }
