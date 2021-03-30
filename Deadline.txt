@@ -5,7 +5,7 @@ Tuần thứ 13
 + Tạo model ở service package **
 + Tạo serviec code thực hiện các chức năng *
 + Tạo REST API theo mô hình CRUD ở controller + model + repo **
-+ Dùng themeleaf (Jquery) để test view lên web browser
++ Dùng React xây dựng Front-End theo MVC
 + kết hợp với front end để thành project hoàn chỉnh
 
 ( Các chức năng login thì thực hiện đăng nhập gián tiếp qua mail trường - keyword(OAuth))
