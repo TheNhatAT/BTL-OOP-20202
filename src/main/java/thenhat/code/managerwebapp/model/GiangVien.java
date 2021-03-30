@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "giang_vien")
-public class GiangVien {
+public class GiangVien{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "giang_vien_id", columnDefinition = "bigint")
