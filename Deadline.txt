@@ -1,0 +1,30 @@
+Tuần thứ 13
+- Các bước thực hiện(back-end):
++ Xin file .xlsx để thực hiện testing webapp **
++ Thiết kế csdl theo mô hình ERD ---> RD **
++ Tạo model ở service package **
++ Tạo serviec code thực hiện các chức năng *
++ Tạo REST API theo mô hình CRUD ở controller + model + repo **
++ Dùng themeleaf (Jquery) để test view lên web browser
++ kết hợp với front end để thành project hoàn chỉnh
+
+( Các chức năng login thì thực hiện đăng nhập gián tiếp qua mail trường - keyword(OAuth))
+
+Nhận phụ tránh:
+- Viết REST API **
+- Kết nối, xử lý database **
+- Security (Spring Security) (trung hieu)*
+
+Keywords
+- data binding formatter( truyền dữ liệu POST - 1 class chứa class khác) implement Fomatter --> trước đó cần config 
+
+- Model Scoped: 
+   + request: model.addAttribute("key", value) -> dùng để search
+
+   + session: session.setAttribute("key", value) = @SesstionAttributes({key, value}) -> kiểm tra 1 user, check profile của user
+
+   + application: request.getServletContext.setAttribute("key", value); -> đếm số lượng users (vì có thể truy cập trong mọi controller)
+
+   + PRG(POST/redirect/GET) --> to submit a form
+
+   + Authentication / Authorzication / OAuth
