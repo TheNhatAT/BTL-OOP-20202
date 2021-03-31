@@ -30,6 +30,11 @@ public class LopHocServiceImpl implements LopHocService {
     }
 
     @Override
+    public void addLopHoc(LopHoc lopHoc, Long id) {
+        this.lopHocDAO.addLopHoc(lopHoc, id);
+    }
+
+    @Override
     public void updateLopHoc(LopHoc lopHoc) {
         this.lopHocDAO.updateLopHoc(lopHoc);
     }

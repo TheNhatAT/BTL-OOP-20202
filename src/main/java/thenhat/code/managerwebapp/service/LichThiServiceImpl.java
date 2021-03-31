@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import thenhat.code.managerwebapp.DAO.LichThiDAO;
+import thenhat.code.managerwebapp.model.GiangVien;
 import thenhat.code.managerwebapp.model.LichThi;
 
 import java.util.List;
@@ -25,6 +26,16 @@ public class LichThiServiceImpl implements LichThiService {
     @Override
     public void addLichThi(LichThi lichThi) {
         this.lichThiDAO.addLichThi(lichThi);
+    }
+
+    @Override
+    public void addLichThi(LichThi lichThi, Long id) {
+        this.lichThiDAO.addLichThi(lichThi, id);
+    }
+
+    @Override
+    public void addLichThi(LichThi lichThi, Long id_1, Long id_2) {
+        this.lichThiDAO.addLichThi(lichThi, id_1, id_2);
     }
 
     @Override

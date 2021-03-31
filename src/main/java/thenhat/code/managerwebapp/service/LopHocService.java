@@ -8,6 +8,7 @@ public interface LopHocService {
     void addAllLopHoc(List<LopHoc> lopHocList);
 
     void addLopHoc(LopHoc lopHoc);
+    void addLopHoc(LopHoc lopHoc, Long id);
 
     void updateLopHoc(LopHoc lopHoc);
 

@@ -72,6 +72,20 @@ public class LichThiController {
         return lichThi;
     }
 
+    //== chua debug ==
+    @PostMapping("/addLichThiWithGiamThi")
+    public LichThi addLichThiWithGiamThi(@RequestBody LichThi lichThi, @RequestParam("id") Long id) {
+        lichThiService.addLichThi(lichThi, id);
+        return lichThiService.getLichThiById(lichThi.getId());
+    }
+
+    //== chua debug ==
+    @PostMapping("/addLichThiWith2GiamThi")
+    public LichThi addLichThiWithGiamThi(@RequestBody LichThi lichThi, @RequestParam("id_1") Long id_1, @RequestParam("id_2") Long id_2) {
+        lichThiService.addLichThi(lichThi, id_1, id_2);
+        return lichThiService.getLichThiById(lichThi.getId());
+    }
+
     @GetMapping("/lichThi")
     public LichThi getLichThi(@RequestParam("id") int id) {
         return lichThiService.getLichThiById(Long.valueOf(id));
@@ -109,4 +123,5 @@ public class LichThiController {
         }
         return list;
     }
+
 }

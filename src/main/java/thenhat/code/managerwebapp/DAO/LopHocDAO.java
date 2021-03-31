@@ -10,6 +10,8 @@ public interface LopHocDAO {
 
     void addLopHoc(LopHoc lopHoc);
 
+    void addLopHoc(LopHoc lopHoc, Long id);
+
     void updateLopHoc(LopHoc lopHoc);
 
     LopHoc getLopHocByMaLop(Long maLop);

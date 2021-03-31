@@ -38,6 +38,15 @@ public class LopHocDAOImpl implements LopHocDAO {
     }
 
     @Override
+    public void addLopHoc(LopHoc lopHoc, Long id) {
+        log.info("start() add lop hoc = {} with giang vien has id = {}", lopHoc.toString(), id);
+        lopHoc.setGiangVien(em.find(GiangVien.class, id));
+        em.persist(lopHoc);
+        log.info("finish() add lop hoc with giang vien");
+        em.close();
+    }
+
+    @Override
     public void updateLopHoc(LopHoc lopHoc) {
         log.info("start() update from lop hoc = {} to lop hoc = {}", em.find(LopHoc.class, lopHoc.getMaLop()), lopHoc);
         em.merge(lopHoc);

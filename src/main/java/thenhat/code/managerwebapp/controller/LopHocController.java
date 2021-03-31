@@ -31,6 +31,8 @@ public class LopHocController {
         if (ExcelHelper.hasExelFormat(file)) {
             try {
                 log.info("start() upload");
+
+                //==  file excel cần cột tham chiếu về giảng viên theo id==//
                 List<LopHoc> lopHocList = ExcelHelper.exelToLopHoc(file.getInputStream());
                 lopHocService.addAllLopHoc(lopHocList);
                 return lopHocList;
@@ -75,5 +77,12 @@ public class LopHocController {
     public List<LopHoc> getListLopOfGiangVien(@RequestParam("id") Long id) {
         log.info("start() get list lop hoc of giang vien");
         return lopHocService.getListLopHocOfGiangVienId(id);
+    }
+
+    //== chua debug ==
+    @PostMapping("/addLopHocWithGiangVien")
+    public LopHoc addLopHocWithGiangVien(@RequestBody LopHoc lopHoc, @RequestParam("id") Long id) {
+        lopHocService.addLopHoc(lopHoc, id);
+        return lopHocService.getLopHocByMaLop(lopHoc.getMaLop());
     }
 }

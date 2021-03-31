@@ -4,6 +4,7 @@ import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import thenhat.code.managerwebapp.model.GiangVien;
 import thenhat.code.managerwebapp.model.LichThi;
 import thenhat.code.managerwebapp.model.LopHoc;
 
@@ -25,10 +26,28 @@ public class LichThiDAOImpl implements LichThiDAO {
     //== REST methods ==
     @Override
     public void addLichThi(LichThi lichThi) {
-        log.info("lich thi in DAO = {}", lichThi.toString());
-
-        //-- cần setLopHoc(LopHoc lh) trước khi add --
+        log.info("start() add lich thi in DAO = {}", lichThi.toString());
         em.persist(lichThi);
+        log.info("finish add lich thi");
+        em.close();
+    }
+
+    @Override
+    public void addLichThi(LichThi lichThi, Long id) {
+        log.info("start() add lich thi in DAO = {} with 1 giam thi has id = {}", lichThi.toString(), id);
+        lichThi.setGiamThi1(em.find(GiangVien.class, id));
+        em.persist(lichThi);
+        log.info("finish add lich thi with 1 giam thi");
+        em.close();
+    }
+
+    @Override
+    public void addLichThi(LichThi lichThi, Long id_1, Long id_2) {
+        log.info("start() add lich thi in DAO = {} with giam thi 1 has id_1 = {}, id_2 = {}", lichThi.toString(), id_1, id_2);
+        lichThi.setGiamThi1(em.find(GiangVien.class, id_1));
+        lichThi.setGiamThi2(em.find(GiangVien.class, id_2));
+        em.persist(lichThi);
+        log.info("finish add lich thi with giam thi");
         em.close();
     }
 
