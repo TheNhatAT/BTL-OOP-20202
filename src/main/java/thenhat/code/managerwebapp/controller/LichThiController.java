@@ -72,14 +72,12 @@ public class LichThiController {
         return lichThi;
     }
 
-    //== chua debug ==
     @PostMapping("/addLichThiWithGiamThi")
     public LichThi addLichThiWithGiamThi(@RequestBody LichThi lichThi, @RequestParam("id") Long id) {
         lichThiService.addLichThi(lichThi, id);
         return lichThiService.getLichThiById(lichThi.getId());
     }
 
-    //== chua debug ==
     @PostMapping("/addLichThiWith2GiamThi")
     public LichThi addLichThiWithGiamThi(@RequestBody LichThi lichThi, @RequestParam("id_1") Long id_1, @RequestParam("id_2") Long id_2) {
         lichThiService.addLichThi(lichThi, id_1, id_2);
@@ -102,6 +100,7 @@ public class LichThiController {
         return listLichThi;
     }
 
+    //== chua debug do data chua co ==
     @GetMapping("/listLichThiOfLopHoc")
     public List<LichThi> getListLichThiOfLopHoc(@RequestParam("maLop") Long maLop) {
         List<LichThi> list = lichThiService.getListLichThiOfLopHocMaLop(maLop);
@@ -113,6 +112,7 @@ public class LichThiController {
         return list;
     }
 
+    //== chua debug do data chua co ==
     @GetMapping("/listLichThiOfGiangVien")
     public List<LichThi> getListLichThiOfGiangVien(@RequestParam("id") Long id) {
         List<LichThi> list = lichThiService.getListLichThiOfGiangVienId(id);

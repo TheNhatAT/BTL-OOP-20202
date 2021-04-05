@@ -72,17 +72,18 @@ public class LopHocController {
         return lopHocService.getAllLopHoc();
     }
 
-    //== chưa có data về GV ==
     @GetMapping("/getLopHocByGiangVienId")
     public List<LopHoc> getListLopOfGiangVien(@RequestParam("id") Long id) {
         log.info("start() get list lop hoc of giang vien");
         return lopHocService.getListLopHocOfGiangVienId(id);
     }
 
-    //== chua debug ==
     @PostMapping("/addLopHocWithGiangVien")
     public LopHoc addLopHocWithGiangVien(@RequestBody LopHoc lopHoc, @RequestParam("id") Long id) {
         lopHocService.addLopHoc(lopHoc, id);
         return lopHocService.getLopHocByMaLop(lopHoc.getMaLop());
     }
+
+    //== done debug ==
+
 }
