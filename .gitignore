@@ -35,5 +35,6 @@ build/
 DataProcess
 KeyWords
 SpringMVC
+SpringSecurity
 test
 target
