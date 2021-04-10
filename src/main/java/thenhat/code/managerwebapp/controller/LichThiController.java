@@ -8,6 +8,7 @@ import thenhat.code.managerwebapp.helper.ExcelHelper;
 import thenhat.code.managerwebapp.model.LichThi;
 import thenhat.code.managerwebapp.service.LichThiService;
 
+import java.util.Vector;
 import java.io.IOException;
 import java.util.List;
 
@@ -123,5 +124,17 @@ public class LichThiController {
         }
         return list;
     }
-
+    @GetMapping("/checkPhanCong")
+    public Vector<Integer> checkPhanCong() {
+        Vector<Integer> success = new Vector<Integer>();
+        success.add(0);
+        success.add(0);
+        if (lichThiService.checkGiangVien() != success) {
+            return lichThiService.checkGiangVien();
+        }
+        if (lichThiService.checkSV() != success) {
+            return lichThiService.checkSV();
+        }
+        return success;
+    }
 }
