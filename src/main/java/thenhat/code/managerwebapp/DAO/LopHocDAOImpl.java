@@ -18,6 +18,7 @@ public class LopHocDAOImpl implements LopHocDAO {
     @PersistenceContext
     EntityManager em;
 
+    //== methods ==
     @Override
     public void addAllLopHoc(List<LopHoc> lopHocList) {
         log.info("start() add all lop hoc");
@@ -28,7 +29,6 @@ public class LopHocDAOImpl implements LopHocDAO {
         em.close();
     }
 
-    //== methods ==
     @Override
     public void addLopHoc(LopHoc lopHoc) {
         log.info("start() add lop hoc = {}", lopHoc.toString());
