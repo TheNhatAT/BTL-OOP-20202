@@ -61,7 +61,7 @@ public class TeacherController {
     public String removeTeacher(@PathVariable("id") Long id) {
         log.info("remove giang vien by id = {}", id);
         teacherService.removeTeacherById(id);
-        return "redirect:/api/classes";
+        return "redirect:/api/teachers";
     }
     //== JSON ==
     @ResponseBody
