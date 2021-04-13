@@ -35,5 +35,4 @@ public class GiangVien{
 
     @Column(name = "trong_thi")
     private Boolean trongThi;
-
 }
