@@ -13,70 +13,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class LichThi {
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getTenVien() {
-        return tenVien;
-    }
-
-    public Integer getMaLop() {
-        return maLop;
-    }
-
-    public String getMaHp() {
-        return maHp;
-    }
-
-    public String getTenHp() {
-        return tenHp;
-    }
-
-    public String getGhiChu() {
-        return ghiChu;
-    }
-
-    public String getTenNhom() {
-        return tenNhom;
-    }
-
-    public String getDotMo() {
-        return dotMo;
-    }
-
-    public String getTuan() {
-        return tuan;
-    }
-
-    public String getThu() {
-        return thu;
-    }
-
-    public String getNgayThi() {
-        return ngayThi;
-    }
-
-    public String getKipThi() {
-        return kipThi;
-    }
-
-    public Integer getSoLuongDk() {
-        return soLuongDk;
-    }
-
-    public String getPhongThi() {
-        return phongThi;
-    }
-
-    public GiangVien getGiamThi1() {
-        return GiamThi1;
-    }
-
-    public GiangVien getGiamThi2() {
-        return GiamThi2;
-    }
-
     //== fields ==
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -131,5 +67,4 @@ public class LichThi {
     @ManyToOne
     @JoinColumn(name = "giam_thi_2_id", foreignKey = @ForeignKey(name = "giam_thi_2_fk"))
     private GiangVien GiamThi2;
-
 }

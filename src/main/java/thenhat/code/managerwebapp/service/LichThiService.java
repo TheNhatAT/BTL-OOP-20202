@@ -4,7 +4,6 @@ import thenhat.code.managerwebapp.model.GiangVien;
 import thenhat.code.managerwebapp.model.LichThi;
 
 import java.util.List;
-import java.util.Vector;
 
 public interface LichThiService {
     void addLichThi(LichThi lichThi);
@@ -23,11 +22,7 @@ public interface LichThiService {
 
     void removeLichThiById(Long id);
 
-    List<LichThi> getListLichThiOfLopHocMaLop(Long maLop);
+     List<LichThi> getListLichThiOfLopHocMaLop(Long maLop);
 
-    List<LichThi> getListLichThiOfGiangVienId(Long id);
-
-    Vector<Integer> checkGiangVien();
-
-    Vector<Integer> checkSV();
+     List<LichThi> getListLichThiOfGiangVienId(Long id);
 }
