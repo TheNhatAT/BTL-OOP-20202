@@ -21,7 +21,7 @@ Keywords
 - Model Scoped: 
    + request: model.addAttribute("key", value) -> dùng để search
 
-   + session: session.setAttribute("key", value) = @SesstionAttributes({key, value}) -> kiểm tra 1 user, check profile của user
+   + session: session.setAttribute("key", value) = @SesstionAttributes({key, value}) -> kiểm tra 1 users, check profile của users
 
    + application: request.getServletContext.setAttribute("key", value); -> đếm số lượng users (vì có thể truy cập trong mọi controller)
 

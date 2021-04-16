@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import thenhat.code.managerwebapp.model.User;
+import thenhat.code.managerwebapp.model.Users;
 
 @Service("customUserService")
 public class CustomUserService implements UserDetailsService {
@@ -22,11 +22,11 @@ public class CustomUserService implements UserDetailsService {
     //== method ==
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.findUserByEmail(username);
-        if(user == null) {
+        Users users = userService.findUserByEmail(username);
+        if(users == null) {
             throw new UsernameNotFoundException(username);
         }
-        UserDetails userDetails = org.springframework.security.core.userdetails.User.withUsername(user.getEmailAddress()).password(user.getPassword()).authorities("USER").build();
+        UserDetails userDetails = org.springframework.security.core.userdetails.User.withUsername(users.getEmailAddress()).password(users.getPassword()).authorities("USER").build();
         return userDetails;
     }
 }

@@ -1,8 +1,8 @@
 package thenhat.code.managerwebapp.service;
 
-import thenhat.code.managerwebapp.model.User;
+import thenhat.code.managerwebapp.model.Users;
 
 public interface UserService {
-    User saveUser(User user);
-    User findUserByEmail(String email);
+    Users saveUser(Users users);
+    Users findUserByEmail(String email);
 }

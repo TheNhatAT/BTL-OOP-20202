@@ -1,8 +1,8 @@
 package thenhat.code.managerwebapp.DAO;
 
-import thenhat.code.managerwebapp.model.User;
+import thenhat.code.managerwebapp.model.Users;
 
 public interface UserDAO {
-    User saveUser(User user);
-    User findUserByEmail(String email);
+    Users saveUser(Users users);
+    Users findUserByEmail(String email);
 }

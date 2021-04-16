@@ -3,20 +3,19 @@ package thenhat.code.managerwebapp.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import thenhat.code.managerwebapp.model.User;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import thenhat.code.managerwebapp.model.Users;
 import thenhat.code.managerwebapp.service.UserService;
 import thenhat.code.managerwebapp.util.ViewNames;
 
 @Slf4j
 @Controller
-@CrossOrigin("http://localhost:8080") //-- for configuring allowed origins --
 public class LoginController {
 
     //== field ==
     private UserService userService;
-    private ViewNames viewNames = new ViewNames();
 
     //== constructor injection ==
     @Autowired
@@ -27,17 +26,23 @@ public class LoginController {
     //== REST methods ==
     @GetMapping("/welcome")
     public String welcome() {
-        return "welcome";
+        return ViewNames.WELCOME_PAGE;
     }
 
     @GetMapping("/register")
-    public String getRegistrationView(){
-        return "registration";
+    public String getRegistrationView() {
+        return ViewNames.REGISTRATION_PAGE;
+    }
+
+    @GetMapping("/registerCf")
+    public String getRegistrationCfView() {
+        return ViewNames.REGISTRATION_CONFIRMATION_PAGE;
     }
 
     @PostMapping("/register")
-    public String customerRegistration(@ModelAttribute("user") User user, Model model){
+    public String customerRegistration(Users user) {
+        log.info("user form = {}", user                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  );
         userService.saveUser(user);
-        return viewNames.REGISTRATION_CONFIRMATION_PAGE;
+        return "redirect:/registerCf";
     }
 }

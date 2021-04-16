@@ -3,7 +3,7 @@ package thenhat.code.managerwebapp.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import thenhat.code.managerwebapp.DAO.UserDAO;
-import thenhat.code.managerwebapp.model.User;
+import thenhat.code.managerwebapp.model.Users;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -19,14 +19,14 @@ public class UserServiceImpl implements UserService{
 
     //== method ==
     @Override
-    public User saveUser(User user) {
-        userDAO.saveUser(user);
-        return user;
+    public Users saveUser(Users users) {
+        userDAO.saveUser(users);
+        return users;
     }
 
     @Override
-    public User findUserByEmail(String email) {
-        User user = userDAO.findUserByEmail(email);
-        return user;
+    public Users findUserByEmail(String email) {
+        Users users = userDAO.findUserByEmail(email);
+        return users;
     }
 }
