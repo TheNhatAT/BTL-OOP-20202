@@ -3,8 +3,10 @@ package thenhat.code.managerwebapp.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import thenhat.code.managerwebapp.model.Users;
 import thenhat.code.managerwebapp.service.UserService;
@@ -30,7 +32,7 @@ public class LoginController {
     }
 
     @GetMapping("/register")
-    public String getRegistrationView() {
+    public String getRegistrationView(@ModelAttribute("user") Users user) {
         return ViewNames.REGISTRATION_PAGE;
     }
 
@@ -41,7 +43,7 @@ public class LoginController {
 
     @PostMapping("/register")
     public String customerRegistration(Users user) {
-        log.info("user form = {}", user                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  );
+        log.info("user form = {}", user);
         userService.saveUser(user);
         return "redirect:/login";
     }
