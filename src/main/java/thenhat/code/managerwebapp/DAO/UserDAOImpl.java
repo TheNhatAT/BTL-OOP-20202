@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import thenhat.code.managerwebapp.model.Users;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 @Slf4j
@@ -12,23 +13,24 @@ import javax.transaction.Transactional;
 @Repository
 public class UserDAOImpl implements UserDAO {
     //== field ==
+    @PersistenceContext
     EntityManager em;
 
     //== methods ==
     @Override
-    public Users saveUser(Users users) {
-        log.info("start() save user = {} into DB", users);
-        em.persist(users);
+    public Users saveUser(Users user) {
+        log.info("start() save user = {} into DB", user);
+        em.persist(user);
         em.close();
         log.info("finish() save user into DB");
-        return users;
+        return user;
     }
 
     @Override
     public Users findUserByEmail(String email) {
-        log.info("start() fine user from DB");
-        Users users = (Users) em.createNativeQuery("select * from users where users.email_address = " + email).getSingleResult();
-        log.info("finish() find user by email");
-        return users;
+        log.info("start() find user from DB, email = {}", email);
+        Users user = (Users) em.createNativeQuery("select * from users where email_address = " + "'" + email + "'", Users.class).getSingleResult();
+        log.info("finish() find user by email, user = {}", user);
+        return user;
     }
 }

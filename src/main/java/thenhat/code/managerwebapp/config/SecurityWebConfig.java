@@ -22,48 +22,28 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter {
     @Resource(name = "customUserService")
     private UserDetailsService userDetailsService;
 
-    //== methods ==
-
-    //-- this method for authorization --
+    //== method ==
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        //-- authorize URL, define authorization with default methods --
-        http.authorizeRequests().antMatchers("/**").permitAll().and().formLogin().defaultSuccessUrl("/welcome", true);
-
+        http.authorizeRequests().antMatchers("/**").permitAll().and().formLogin().defaultSuccessUrl("/welcome",true);
     }
 
-    //-- this method for authentication --
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authenticationProvider());
-    }
 
-    /*
-    //== this method for authentication ==\\
-    //== config AuthenticationManager ==\\
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder authentication)
-            throws Exception
-    {
-        authentication.inMemoryAuthentication()
-                .withUser("admin")
-                .password(passwordEncoder().encode("admin"))
-                .authorities("ROLE_USER");
-    }
-    */
-
-    //== This algorithm generate String of length 60 ==\\
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        //== use this hash code on authentication ==\\
+    public DaoAuthenticationProvider authProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return authProvider;
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService);
-        authenticationProvider.setPasswordEncoder(passwordEncoder());
-        return authenticationProvider;
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authProvider());
     }
 }
