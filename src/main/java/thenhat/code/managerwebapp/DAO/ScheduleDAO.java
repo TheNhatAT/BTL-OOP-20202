@@ -1,5 +1,6 @@
 package thenhat.code.managerwebapp.DAO;
 
+import thenhat.code.managerwebapp.model.Class;
 import thenhat.code.managerwebapp.model.Schedule;
 
 import java.util.List;
@@ -25,5 +26,5 @@ public interface ScheduleDAO {
 
     List<Schedule> getListScheduleOfCodeClass(Long maLop);
 
-    List<Schedule> getListScheduleOfClassId(Long id);
+    List<Schedule> getListScheduleOfTeacherId(Long id);
 }

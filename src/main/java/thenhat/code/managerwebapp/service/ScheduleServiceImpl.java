@@ -69,7 +69,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public List<Schedule> getListScheduleOfTeacherId(Long id) {
-        return this.scheduleDAO.getListScheduleOfClassId(id);
+        return this.scheduleDAO.getListScheduleOfTeacherId(id);
     }
 
 
