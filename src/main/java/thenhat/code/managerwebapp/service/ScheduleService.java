@@ -24,4 +24,6 @@ public interface ScheduleService {
      List<Schedule> getListScheduleOfCodeClass(Long maLop);
 
      List<Schedule> getListScheduleOfTeacherId(Long id);
+
+     List<Schedule> getListScheduleOfInstitute(String institute);
 }

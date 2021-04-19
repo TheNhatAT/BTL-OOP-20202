@@ -4,9 +4,9 @@ import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import thenhat.code.managerwebapp.model.Teacher;
-import thenhat.code.managerwebapp.model.Schedule;
 import thenhat.code.managerwebapp.model.Class;
+import thenhat.code.managerwebapp.model.Schedule;
+import thenhat.code.managerwebapp.model.Teacher;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -109,5 +109,15 @@ public class ScheduleDAOImpl implements ScheduleDAO {
         }
         log.info("finish() get list lich thi of giang vien has id = {}", id);
         return list;
+    }
+
+    //== method for algorithm ==
+    @Override
+    public List<Schedule> getListScheduleOfInstitute(String institute) {
+        log.info("start() get list lich thi cua viện {}", institute);
+        List<Schedule> scheduleList = em.createNativeQuery("SELECT * FROM schedule WHERE ten_vien = " + "'" + institute + "'", Schedule.class).getResultList();
+        log.info("finish() get list lich thi cua viện {}", institute);
+        em.close();
+        return scheduleList;
     }
 }

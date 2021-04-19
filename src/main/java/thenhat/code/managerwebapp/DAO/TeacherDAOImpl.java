@@ -59,4 +59,14 @@ public class TeacherDAOImpl implements TeacherDAO {
         em.close();
         log.info("finish() remove");
     }
+
+    //== method for algorithm ==
+    @Override
+    public List<Teacher> getListTeacherOfInstitute(String institute) {
+        log.info("start() get list giang vien cua vien {}", institute);
+        List<Teacher> teacherList = em.createNativeQuery("SELECT * FROM teacher WHERE vien = " + "'" + institute + "'", Teacher.class).getResultList();
+        em.close();
+        log.info("start() get list giang vien cua vien {}", institute);
+        return teacherList;
+    }
 }
