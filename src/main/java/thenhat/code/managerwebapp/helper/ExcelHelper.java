@@ -7,8 +7,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
-import thenhat.code.managerwebapp.model.LichThi;
-import thenhat.code.managerwebapp.model.LopHoc;
+import thenhat.code.managerwebapp.model.Schedule;
+import thenhat.code.managerwebapp.model.Class;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,7 +29,7 @@ public class ExcelHelper {
         return TYPE.equals(file.getContentType());
     }
 
-    public static List<LichThi> excelToLichThi(InputStream is) {
+    public static List<Schedule> excelToLichThi(InputStream is) {
         //-- count id --
         int countId = 1;
 
@@ -41,7 +41,7 @@ public class ExcelHelper {
             Sheet sheet = workbook.getSheetAt(0);
             Iterator<Row> rows = sheet.iterator();
 
-            List<LichThi> lichThiList = new ArrayList<>();
+            List<Schedule> scheduleList = new ArrayList<>();
 
             int rowNumber = 0;
             //-- read row by row --
@@ -56,50 +56,50 @@ public class ExcelHelper {
 
                 Iterator<Cell> cellsInRow = currentRow.iterator();
 
-                LichThi lichThi = new LichThi();
+                Schedule schedule = new Schedule();
 
                 int cellIndex = 0;
                 while (cellsInRow.hasNext()) {
                     Cell currentCell = cellsInRow.next();
                     switch (cellIndex) {
                         case 0:
-                            lichThi.setTenVien(currentCell.getStringCellValue());
+                            schedule.setTenVien(currentCell.getStringCellValue());
                             break;
                         case 1:
-                            lichThi.setMaLop((int) currentCell.getNumericCellValue());
+                            schedule.setMaLop((int) currentCell.getNumericCellValue());
                             break;
                         case 2:
-                            lichThi.setMaHp(currentCell.getStringCellValue());
+                            schedule.setMaHp(currentCell.getStringCellValue());
                             break;
                         case 3:
-                            lichThi.setTenHp(currentCell.getStringCellValue());
+                            schedule.setTenHp(currentCell.getStringCellValue());
                             break;
                         case 4:
-                            lichThi.setGhiChu(currentCell.getStringCellValue());
+                            schedule.setGhiChu(currentCell.getStringCellValue());
                             break;
                         case 5:
-                            lichThi.setTenNhom(currentCell.getStringCellValue());
+                            schedule.setTenNhom(currentCell.getStringCellValue());
                             break;
                         case 6:
-                            lichThi.setDotMo(currentCell.getStringCellValue());
+                            schedule.setDotMo(currentCell.getStringCellValue());
                             break;
                         case 7:
-                            lichThi.setTuan(currentCell.getStringCellValue());
+                            schedule.setTuan(currentCell.getStringCellValue());
                             break;
                         case 8:
-                            lichThi.setThu(currentCell.getStringCellValue());
+                            schedule.setThu(currentCell.getStringCellValue());
                             break;
                         case 9:
-                            lichThi.setNgayThi(currentCell.getStringCellValue());
+                            schedule.setNgayThi(currentCell.getStringCellValue());
                             break;
                         case 10:
-                            lichThi.setKipThi(currentCell.getStringCellValue());
+                            schedule.setKipThi(currentCell.getStringCellValue());
                             break;
                         case 11:
-                            lichThi.setSoLuongDk(((int) currentCell.getNumericCellValue()));
+                            schedule.setSoLuongDk(((int) currentCell.getNumericCellValue()));
                             break;
                         case 12:
-                            lichThi.setPhongThi(currentCell.getStringCellValue());
+                            schedule.setPhongThi(currentCell.getStringCellValue());
                             break;
                         //-- dont need to use this case 'cause use  @GeneratedValue(strategy = GenerationType.IDENTITY)
 //                        case 13:
@@ -112,19 +112,19 @@ public class ExcelHelper {
                             break;
                     }
                     cellIndex++;
-                    lichThiList.add(lichThi);
+                    scheduleList.add(schedule);
                 }
                 workbook.close();
             }
 
-            return lichThiList;
+            return scheduleList;
         } catch (IOException e) {
             log.info("Exception is {}", e.toString());
             throw new RuntimeException("fail to parse Excel file: " + e.getMessage());
         }
     }
 
-    public static List<LopHoc> exelToLopHoc(InputStream is) {
+    public static List<Class> exelToLopHoc(InputStream is) {
         try {
             Workbook workbook = new XSSFWorkbook(is);
 
@@ -133,7 +133,7 @@ public class ExcelHelper {
             Sheet sheet = workbook.getSheetAt(0);
             Iterator<Row> rows = sheet.iterator();
 
-            List<LopHoc> lopHocList = new ArrayList<>();
+            List<Class> classList = new ArrayList<>();
 
             int rowNumber = 0;
             //-- read row by row --
@@ -148,37 +148,37 @@ public class ExcelHelper {
 
                 Iterator<Cell> cellsInRow = currentRow.iterator();
 
-                LopHoc lopHoc = new LopHoc();
+                Class aClass = new Class();
 
                 int cellIndex = 0;
                 while (cellsInRow.hasNext()) {
                     Cell currentCell = cellsInRow.next();
                     switch (cellIndex) {
                         case 0:
-                            lopHoc.setKyHoc(currentCell.getStringCellValue());
+                            aClass.setKyHoc(currentCell.getStringCellValue());
                             break;
                         case 5:
-                            lopHoc.setTenLop(currentCell.getStringCellValue());
+                            aClass.setTenLop(currentCell.getStringCellValue());
                             break;
                         case 2:
                             //log.info("value of this cell is {}", currentCell.getStringCellValue());
-                            lopHoc.setMaLop(Long.valueOf(currentCell.getStringCellValue()));
+                            aClass.setMaLop(Long.valueOf(currentCell.getStringCellValue()));
                             break;
                         case 18:
                             try {
-                                lopHoc.setSoLuongSV(Integer.valueOf(currentCell.getStringCellValue()));
+                                aClass.setSoLuongSV(Integer.valueOf(currentCell.getStringCellValue()));
                             } catch (Exception e) {
                                 break;
                             }
                             break;
                     }
                     cellIndex++;
-                    lopHocList.add(lopHoc);
+                    classList.add(aClass);
                 }
                 workbook.close();
             }
 
-            return lopHocList;
+            return classList;
         } catch (IOException e) {
             log.info("Exception is {}", e.toString());
             throw new RuntimeException("fail to parse Excel file: " + e.getMessage());

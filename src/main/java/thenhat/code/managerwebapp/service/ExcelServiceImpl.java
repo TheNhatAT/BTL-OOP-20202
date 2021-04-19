@@ -4,9 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import thenhat.code.managerwebapp.repository.LichThiRepository;
+import thenhat.code.managerwebapp.repository.ClassRepository;
 import thenhat.code.managerwebapp.helper.ExcelHelper;
-import thenhat.code.managerwebapp.model.LichThi;
+import thenhat.code.managerwebapp.model.Schedule;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,12 +16,12 @@ import java.util.List;
 public class ExcelServiceImpl implements ExcelService {
 
     //== fields ==
-    LichThiRepository lichThiRepository;
+    ClassRepository classRepository;
 
     //== constructor injection ==
     @Autowired
-    public ExcelServiceImpl(LichThiRepository lichThiRepository) {
-        this.lichThiRepository = lichThiRepository;
+    public ExcelServiceImpl(ClassRepository classRepository) {
+        this.classRepository = classRepository;
     }
 
     //== methods ==
@@ -29,10 +29,10 @@ public class ExcelServiceImpl implements ExcelService {
     public void save(MultipartFile file) {
         try {
             log.info("before saving by ExcelService");
-            List<LichThi> lichThiList = ExcelHelper.excelToLichThi(file.getInputStream());
+            List<Schedule> scheduleList = ExcelHelper.excelToLichThi(file.getInputStream());
 
 //            log.info("lichThiList = {}", lichThiList);
-            lichThiRepository.saveAll(lichThiList);
+            classRepository.saveAll(scheduleList);
             log.info("after saving by ExcelService");
         } catch (IOException e) {
             log.info("Error is {}", e.toString());
@@ -41,7 +41,7 @@ public class ExcelServiceImpl implements ExcelService {
     }
 
     @Override
-    public List<LichThi> getAllLichThi() {
-        return lichThiRepository.findAll();
+    public List<Schedule> getAllSchedule() {
+        return classRepository.findAll();
     }
 }

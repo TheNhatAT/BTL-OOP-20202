@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "lich_thi")
+@Table(name = "schedule")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LichThi {
+public class Schedule {
 
     //== fields ==
     @Id
@@ -62,9 +62,9 @@ public class LichThi {
     //-- nâng cấp lúc sau --
     @ManyToOne
     @JoinColumn(name = "giam_thi_1_id", foreignKey = @ForeignKey(name = "giam_thi_1_fk"))
-    private GiangVien GiamThi1;
+    private Teacher GiamThi1;
 
     @ManyToOne
     @JoinColumn(name = "giam_thi_2_id", foreignKey = @ForeignKey(name = "giam_thi_2_fk"))
-    private GiangVien GiamThi2;
+    private Teacher GiamThi2;
 }

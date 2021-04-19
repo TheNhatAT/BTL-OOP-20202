@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import thenhat.code.managerwebapp.helper.ExcelHelper;
 import thenhat.code.managerwebapp.message.ResponseMessage;
-import thenhat.code.managerwebapp.model.LichThi;
+import thenhat.code.managerwebapp.model.Schedule;
 import thenhat.code.managerwebapp.service.ExcelService;
 
 import java.util.List;
@@ -19,14 +19,14 @@ import java.util.List;
 @Controller
 @CrossOrigin("http://localhost:8080") //-- for configuring allowed origins --
 @RequestMapping("/api/excel")
-public class ExelController {
+public class ExcelController {
 
     //== fields ==
     ExcelService excelService;
 
     //== constructor injection ==
     @Autowired
-    public ExelController(ExcelService excelService) {
+    public ExcelController(ExcelService excelService) {
         this.excelService = excelService;
     }
 
@@ -54,16 +54,16 @@ public class ExelController {
     }
 
     @GetMapping("/listLichThi")
-    public ResponseEntity<List<LichThi>> getListLichThi() {
+    public ResponseEntity<List<Schedule>> getListLichThi() {
         try {
-            List<LichThi> lichThiList = excelService.getAllLichThi();
+            List<Schedule> scheduleList = excelService.getAllSchedule();
 
-            if (lichThiList.isEmpty()) {
+            if (scheduleList.isEmpty()) {
                 log.info("List is empty!!!");
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
 
-            return new ResponseEntity<>(lichThiList, HttpStatus.OK);
+            return new ResponseEntity<>(scheduleList, HttpStatus.OK);
         } catch (Exception e) {
             log.info("Error when getListLichThi");
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

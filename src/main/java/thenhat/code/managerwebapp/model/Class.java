@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "lop_hoc")
+@Table(name = "class")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class LopHoc {
+public class Class {
 
     @Id
     @Column(name = "ma_lop")
@@ -34,5 +34,5 @@ public class LopHoc {
 
     @ManyToOne
     @JoinColumn(name = "giang_vien_id", foreignKey = @ForeignKey(name = "giang_vien_id_fk"))
-    private GiangVien giangVien;
+    private Teacher teacher;
 }

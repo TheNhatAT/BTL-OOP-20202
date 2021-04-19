@@ -1,0 +1,61 @@
+package thenhat.code.managerwebapp.service;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import thenhat.code.managerwebapp.DAO.ClassDAO;
+import thenhat.code.managerwebapp.model.Class;
+
+import java.util.List;
+
+@Slf4j
+@Service
+public class ClassServiceImpl implements ClassService {
+    //== field ==
+    ClassDAO classDAO;
+
+    @Autowired
+    public ClassServiceImpl(ClassDAO classDAO) {
+        this.classDAO = classDAO;
+    }
+
+    @Override
+    public void addAllClass(List<Class> classList) {
+        classDAO.addAllClass(classList);
+    }
+
+    @Override
+    public void addClass(Class aClass) {
+        this.classDAO.addClass(aClass);
+    }
+
+    @Override
+    public void addClass(Class aClass, Long id) {
+        this.classDAO.addClass(aClass, id);
+    }
+
+    @Override
+    public void updateClass(Class aClass) {
+        this.classDAO.updateClass(aClass);
+    }
+
+    @Override
+    public Class getClassByCodeClass(Long maLop) {
+        return this.classDAO.getClassByCodeClass(maLop);
+    }
+
+    @Override
+    public List<Class> getAllClasses() {
+        return this.classDAO.getAllClasses();
+    }
+
+    @Override
+    public void removeClass(Long maLop) {
+        this.classDAO.removeClass(maLop);
+    }
+
+    @Override
+    public List<Class> getListClassOfTeacherId(Long id) {
+        return this.classDAO.getListClassOfTeacherId(id);
+    }
+}

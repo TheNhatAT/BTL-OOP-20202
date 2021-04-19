@@ -11,11 +11,11 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "giang_vien")
-public class GiangVien{
+@Table(name = "teacher")
+public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "giang_vien_id", columnDefinition = "bigint")
+    @Column(name = "teacher_id", columnDefinition = "bigint")
     private Long id;
 
     @Column(name = "name")
@@ -27,11 +27,11 @@ public class GiangVien{
     @Column(name = "email_address")
     private String emailAddress;
 
-    @Column(name = "bo_mon")
-    private String boMon;
+    @Column(name = "vien")
+    private String vien;
 
-    @Column(name = "phong_lam_viec")
-    private String phongLamViec;
+    @Column(name = "office")
+    private String office;
 
     @Column(name = "trong_thi")
     private Boolean trongThi;
