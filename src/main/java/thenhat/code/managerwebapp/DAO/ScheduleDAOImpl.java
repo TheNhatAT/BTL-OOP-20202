@@ -1,12 +1,11 @@
 package thenhat.code.managerwebapp.DAO;
 
-import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import thenhat.code.managerwebapp.model.Teacher;
-import thenhat.code.managerwebapp.model.Schedule;
 import thenhat.code.managerwebapp.model.Class;
+import thenhat.code.managerwebapp.model.Schedule;
+import thenhat.code.managerwebapp.model.Teacher;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -51,7 +50,6 @@ public class ScheduleDAOImpl implements ScheduleDAO {
         em.close();
     }
 
-    @NonNull
     @Override
     public void addAllSchedules(List<Schedule> scheduleList) {
         for (Schedule lichthi :
@@ -94,7 +92,7 @@ public class ScheduleDAOImpl implements ScheduleDAO {
     public List<Schedule> getListScheduleOfCodeClass(Long maLop) {
         log.info("start() get list lich thi of lop hoc has ma lop = {}", maLop);
         List<Schedule> list = em.createNativeQuery("SELECT * FROM schedule WHERE ma_lop = " + maLop.toString(), Schedule.class).getResultList();
-        log.info("finish() get list lich thi of lop hoc = {}");
+        log.info("finish() get list lich thi of lop hoc has ma lop = {}", maLop);
         em.close();
         return list;
     }

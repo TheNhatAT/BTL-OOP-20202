@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -32,9 +33,12 @@ public class Users {
     @Column(name = "email_address", unique = true)
     private String emailAddress;
 
-    @Column(name = "token")
-    private String token;
+    @Column(name = "account_verrified")
+    private boolean accountVerified;
 
     @Column(name = "role")
     private String role;
+
+    @OneToMany(mappedBy = "user")
+    private Set<SecureToken> tokens;
 }
