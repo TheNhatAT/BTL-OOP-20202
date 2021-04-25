@@ -51,6 +51,7 @@ public class RegisterController {
     @GetMapping("/verify")
     public String verifyCustomer(@RequestParam(required = false) String token, final Model model, RedirectAttributes redirAttr) {
         if (StringUtils.isEmpty(token)) {
+            //== addFlashAttribute in flashmap (in user session) ==
             redirAttr.addFlashAttribute("tokenError", messageSource.
                     getMessage("user.registration.verification.missing.token", null, LocaleContextHolder.getLocale()));
             return "redirect:/" + ViewNames.LOGIN_PAGE;

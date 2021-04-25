@@ -1,6 +1,5 @@
 package thenhat.code.managerwebapp.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -25,8 +24,14 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter {
     //== method ==
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests().antMatchers("/**").permitAll().and().formLogin().
-                defaultSuccessUrl("/welcome",true);
+        http.csrf().disable()
+                .authorizeRequests().antMatchers("/login", "/register")
+                .permitAll()
+                .antMatchers("/api/**")
+                .hasRole("USER")
+                .and().formLogin()
+                .loginPage("/login") // default is /login with an HTTP get
+                .failureUrl("/login?error=true");
     }
 
 
@@ -39,7 +44,7 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 

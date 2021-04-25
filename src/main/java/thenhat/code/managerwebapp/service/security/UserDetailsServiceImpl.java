@@ -31,6 +31,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if(customer  == null) {
             throw new UsernameNotFoundException(username);
         }
+        //-- check account is verified --
         boolean enabled = !customer.isAccountVerified();
         //-- UserDetails store user info, allow non-security info (email, phone,...) --
         UserDetails user = User.withUsername(customer.getEmailAddress())

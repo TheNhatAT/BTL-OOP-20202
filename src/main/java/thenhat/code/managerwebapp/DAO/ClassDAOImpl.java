@@ -83,7 +83,7 @@ public class ClassDAOImpl implements ClassDAO {
     @Override
     public List<Class> getListClassOfTeacherId(Long id) {
         log.info("start() get list lop hoc of giang vien has id = {}", id);
-        List<Class> list = em.createNativeQuery("SELECT * FROM class WHERE teacher_id = " + id.toString(), Class.class).getResultList();
+        List<Class> list = em.createNativeQuery("SELECT * FROM class WHERE giang_vien_id = " + id.toString(), Class.class).getResultList();
         log.info("finish() get list lop hoc of {}", em.find(Teacher.class, id).getName());
         return list;
     }

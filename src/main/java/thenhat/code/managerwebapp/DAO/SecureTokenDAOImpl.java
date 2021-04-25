@@ -11,7 +11,7 @@ import javax.persistence.PersistenceContext;
 @Slf4j
 @Repository
 @Transactional
-public class SecureTokenImpl implements SecureTokenDAO{
+public class SecureTokenDAOImpl implements SecureTokenDAO{
 
     //== field ==
     @PersistenceContext
@@ -27,9 +27,9 @@ public class SecureTokenImpl implements SecureTokenDAO{
 
     @Override
     public SecureToken findByToken(String token) {
-        log.info("start() find token");
+        log.info("start() find token = {}", token);
         SecureToken findToken = (SecureToken) em.createNativeQuery("SELECT * FROM secure_token WHERE token = " + "'" + token + "'", SecureToken.class).getSingleResult();
-        log.info("finish() find token");
+        log.info("finish() find token = {}", findToken.toString());
         em.close();
         return findToken;
     }
@@ -37,8 +37,8 @@ public class SecureTokenImpl implements SecureTokenDAO{
     @Override
     public void delete(SecureToken token) {
         log.info("start() delete token");
-        em.createNativeQuery("DELETE FROM secure_token WHERE token =" + token.getToken());
-        log.info("finish() delete token");
+        em.createNativeQuery("DELETE FROM secure_token WHERE token =" +  "'" + token.getToken() + "'").executeUpdate();
+        log.info("finish() delete token = {}", token);
         em.close();
     }
 
