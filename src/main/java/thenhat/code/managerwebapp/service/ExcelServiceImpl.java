@@ -30,7 +30,6 @@ public class ExcelServiceImpl implements ExcelService {
         try {
             log.info("before saving by ExcelService");
             List<Schedule> scheduleList = ExcelHelper.excelToLichThi(file.getInputStream());
-
 //            log.info("lichThiList = {}", lichThiList);
             classRepository.saveAll(scheduleList);
             log.info("after saving by ExcelService");
