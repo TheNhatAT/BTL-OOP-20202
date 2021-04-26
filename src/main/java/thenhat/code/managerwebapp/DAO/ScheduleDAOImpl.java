@@ -120,4 +120,11 @@ public class ScheduleDAOImpl implements ScheduleDAO {
         em.close();
         return scheduleList;
     }
+
+    @Override
+    public List<String> getListInstitude() {
+        List<String> institude = em.createNativeQuery("SELECT DISTINCT ten_vien FROM schedule").getResultList();
+        em.close();
+        return institude;
+    }
 }

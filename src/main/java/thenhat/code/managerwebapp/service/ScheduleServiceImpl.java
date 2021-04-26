@@ -4,8 +4,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import thenhat.code.managerwebapp.DAO.ScheduleDAO;
+import thenhat.code.managerwebapp.DAO.TeacherDAO;
+import thenhat.code.managerwebapp.helper.Algorithm;
+import thenhat.code.managerwebapp.model.Assigment;
 import thenhat.code.managerwebapp.model.Schedule;
+import thenhat.code.managerwebapp.model.Teacher;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -14,10 +19,12 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     //== fields ==
     private ScheduleDAO scheduleDAO;
-
+    private Algorithm algorithm;
     //== constructor injection ==
+
     @Autowired
-    public ScheduleServiceImpl(ScheduleDAO scheduleDAO) {
+    public ScheduleServiceImpl(Algorithm algorithm, ScheduleDAO scheduleDAO) {
+        this.algorithm = algorithm;
         this.scheduleDAO = scheduleDAO;
     }
 
@@ -77,5 +84,26 @@ public class ScheduleServiceImpl implements ScheduleService {
         return this.scheduleDAO.getListScheduleOfTeacherId(id);
     }
 
+    @Override
+    public List<String> getAllInstitute() {
+        return this.scheduleDAO.getListInstitude();
+    }
 
+    @Override
+    public List<Assigment> AutoAssignment() {
+        return this.algorithm.AutoAssignment();
+    }
+
+    @Override
+    public void updateTeacher(List<Assigment> assigments) {
+        for (int i = 0; i < assigments.size(); ++i) {
+            Assigment temp = assigments.get(i);
+            Schedule sche = this.scheduleDAO.getScheduleById(temp.getSchedules_id());
+            if (temp.getCanbo2() == null){
+                this.scheduleDAO.addSchedule(sche, temp.getCanbo1());
+            } else {
+                this.scheduleDAO.addSchedule(sche, temp.getCanbo1(), temp.getCanbo2());
+            }
+        }
+    }
 }

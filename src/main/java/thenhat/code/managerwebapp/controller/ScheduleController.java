@@ -5,10 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import thenhat.code.managerwebapp.helper.ExcelHelper;
+import thenhat.code.managerwebapp.model.Assigment;
 import thenhat.code.managerwebapp.model.Schedule;
+import thenhat.code.managerwebapp.model.Teacher;
 import thenhat.code.managerwebapp.service.ScheduleService;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -129,17 +132,15 @@ public class ScheduleController {
      * API: Phân công lịch thi tự động
      * API: DUyệt lịch thi tự động
      */
-//    @GetMapping("/checkPhanCong")
-//    public Vector<Integer> checkPhanCong() {
-//        Vector<Integer> success = new Vector<Integer>();
-//        success.add(0);
-//        success.add(0);
-//        if (lichThiService.checkGiangVien() != success) {
-//            return lichThiService.checkGiangVien();
-//        }
-//        if (lichThiService.checkSV() != success) {
-//            return lichThiService.checkSV();
-//        }
-//        return success;
-//    }
+    @GetMapping("/autoassignment")
+    public List<Assigment> Autoassignment() {
+        List<Assigment> list = scheduleService.AutoAssignment();
+        return list;
+    }
+
+    @PostMapping("/autoassignment")
+    @ResponseBody
+    public void Autoassignment(@RequestBody List<Assigment> assigments) {
+        this.scheduleService.updateTeacher(assigments);
+    }
 }

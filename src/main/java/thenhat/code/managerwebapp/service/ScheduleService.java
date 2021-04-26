@@ -1,7 +1,10 @@
 package thenhat.code.managerwebapp.service;
 
+import thenhat.code.managerwebapp.model.Assigment;
 import thenhat.code.managerwebapp.model.Schedule;
+import thenhat.code.managerwebapp.model.Teacher;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface ScheduleService {
@@ -26,4 +29,8 @@ public interface ScheduleService {
      List<Schedule> getListScheduleOfTeacherId(Long id);
 
      List<Schedule> getListScheduleOfInstitute(String institute);
+
+    List<String> getAllInstitute();
+    List<Assigment> AutoAssignment();
+    void updateTeacher(List<Assigment> assigments);
 }

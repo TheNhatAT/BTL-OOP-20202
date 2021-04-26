@@ -29,4 +29,7 @@ public interface ScheduleDAO {
     List<Schedule> getListScheduleOfTeacherId(Long id);
 
     List<Schedule> getListScheduleOfInstitute(String institute);
+
+    List<String> getListInstitude();
+
 }
