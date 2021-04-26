@@ -1,5 +1,6 @@
 package thenhat.code.managerwebapp.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.annotation.Resource;
 
+@Slf4j
 @Configuration
 @EnableWebSecurity
 public class SecurityWebConfig extends WebSecurityConfigurerAdapter {
@@ -28,8 +30,9 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().antMatchers("/login", "/register")
                 .permitAll()
                 .antMatchers("/api/**")
-                .hasRole("USER")
+                .hasAuthority("USER")
                 .and().formLogin()
+                .defaultSuccessUrl("/index", true)
                 .loginPage("/login") // default is /login with an HTTP get
                 .failureUrl("/login?error=true");
     }

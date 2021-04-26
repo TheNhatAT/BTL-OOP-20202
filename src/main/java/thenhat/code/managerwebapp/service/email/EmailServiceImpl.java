@@ -1,5 +1,6 @@
 package thenhat.code.managerwebapp.service.email;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -12,6 +13,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.nio.charset.StandardCharsets;
 
+@Slf4j
 @Service
 public class EmailServiceImpl implements EmailService{
 
@@ -31,6 +33,7 @@ public class EmailServiceImpl implements EmailService{
     //== method ==
     @Override
     public void sendEmail(AbstractEmailContext email) throws MessagingException {
+        log.info("start() sending email");
         MimeMessage message = emailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(message,
                 MimeMessageHelper.MULTIPART_MODE_MIXED,
@@ -45,5 +48,6 @@ public class EmailServiceImpl implements EmailService{
         mimeMessageHelper.setFrom(email.getFrom());
         mimeMessageHelper.setText(emailContent, true);
         emailSender.send(message);
+        log.info("finish() sending email");
     }
 }

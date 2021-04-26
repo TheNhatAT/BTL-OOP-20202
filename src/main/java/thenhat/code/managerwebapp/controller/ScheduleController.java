@@ -44,7 +44,7 @@ public class ScheduleController {
     }
 
     //== upload and update ==
-    @PostMapping("/")
+    @PostMapping
     public Schedule uploadSchedule(@RequestBody Schedule schedule) {
 
         log.info("lichThi from client = {}", schedule.toString());

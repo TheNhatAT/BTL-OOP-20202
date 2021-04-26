@@ -66,7 +66,7 @@ public class ClassController {
     }
 
     //== ok ==
-    @GetMapping("/")
+    @GetMapping
     public List<Class> getAllClass() {
         log.info("start() get all lop hoc");
         return classService.getAllClasses();

@@ -24,7 +24,7 @@ public class TeacherController {
     }
 
     //== REST methods ==
-    @GetMapping("/")
+    @GetMapping
     public List<Teacher> getAllTeachers() {
         //== cần xử lý thêm các trường hợp ngoại lệ ==
         return teacherService.getAllTeachers();
