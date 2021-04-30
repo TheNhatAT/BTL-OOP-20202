@@ -6,14 +6,17 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.thymeleaf.util.StringUtils;
 import thenhat.code.managerwebapp.exception.InvalidTokenException;
 import thenhat.code.managerwebapp.exception.UserAlreadyExistException;
-import thenhat.code.managerwebapp.model.Users;
-import thenhat.code.managerwebapp.service.UserService;
+import thenhat.code.managerwebapp.model.entity.Users;
+import thenhat.code.managerwebapp.service.entity.UserService;
 import thenhat.code.managerwebapp.util.ViewNames;
+
+import javax.validation.Valid;
 
 @Slf4j
 @CrossOrigin("http://localhost:8080")
@@ -22,8 +25,8 @@ import thenhat.code.managerwebapp.util.ViewNames;
 public class RegisterController {
 
     //== field ==
-    private UserService userService;
-    private MessageSource messageSource;
+    private final UserService userService;
+    private final MessageSource messageSource;
 
     //== constructor injection ==
     @Autowired
@@ -38,20 +41,16 @@ public class RegisterController {
         return ViewNames.WELCOME_PAGE;
     }
 
-    @GetMapping("")
+    @GetMapping
     public String getRegistrationView(@ModelAttribute("user") Users user) {
+        log.info("get registration form");
         return ViewNames.REGISTRATION_PAGE;
-    }
-
-    @GetMapping("/confirm")
-    public String getRegistrationCfView() {
-        return ViewNames.REGISTRATION_CONFIRMATION_PAGE;
     }
 
     @GetMapping("/verify")
     public String verifyCustomer(@RequestParam(required = false) String token, final Model model, RedirectAttributes redirAttr) {
         if (StringUtils.isEmpty(token)) {
-            //== addFlashAttribute in flashmap (in user session) ==
+            //== addFlashAttribute in flash map (in user session) ==
             redirAttr.addFlashAttribute("tokenError", messageSource.
                     getMessage("user.registration.verification.missing.token", null, LocaleContextHolder.getLocale()));
             return "redirect:/" + ViewNames.LOGIN_PAGE;
@@ -69,16 +68,19 @@ public class RegisterController {
         return "redirect:/" + ViewNames.LOGIN_PAGE;
 
     }
-    @PostMapping("")
-    public String customerRegistration(Users user, Model model) {
-        log.info("user form = {}", user);
+    @PostMapping //== note: the BindingResult must be after model ==
+    public String customerRegistration(@Valid @ModelAttribute("user") Users user, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
+        log.info("user form = {}", user.toString());
+        if (result.hasErrors()) {
+            return ViewNames.REGISTRATION_PAGE;
+        }
         try {
             userService.register(user);
+            redirectAttributes.addFlashAttribute("registeredUser", user);
         } catch (UserAlreadyExistException e) {
             model.addAttribute("registrationForm", user);
-            return "";
+            return ViewNames.REGISTRATION_PAGE;
         }
-        model.addAttribute("registrationMsg", messageSource.getMessage("user.registration.verification.email.msg", null, LocaleContextHolder.getLocale()));
-        return "redirect:/login";
+        return "redirect:/" + ViewNames.LOGIN_PAGE;
     }
 }

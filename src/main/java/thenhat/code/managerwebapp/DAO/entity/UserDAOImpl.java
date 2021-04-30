@@ -1,8 +1,8 @@
-package thenhat.code.managerwebapp.DAO;
+package thenhat.code.managerwebapp.DAO.entity;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
-import thenhat.code.managerwebapp.model.Users;
+import thenhat.code.managerwebapp.model.entity.Users;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;

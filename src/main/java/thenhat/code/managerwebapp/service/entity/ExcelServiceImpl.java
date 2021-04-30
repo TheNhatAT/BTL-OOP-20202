@@ -1,4 +1,4 @@
-package thenhat.code.managerwebapp.service;
+package thenhat.code.managerwebapp.service.entity;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import thenhat.code.managerwebapp.repository.ClassRepository;
 import thenhat.code.managerwebapp.helper.ExcelHelper;
-import thenhat.code.managerwebapp.model.Schedule;
+import thenhat.code.managerwebapp.model.entity.Schedule;
 
 import java.io.IOException;
 import java.util.List;

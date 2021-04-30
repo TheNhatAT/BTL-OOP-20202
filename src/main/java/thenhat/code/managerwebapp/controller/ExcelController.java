@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import thenhat.code.managerwebapp.helper.ExcelHelper;
 import thenhat.code.managerwebapp.message.ResponseMessage;
-import thenhat.code.managerwebapp.model.Schedule;
-import thenhat.code.managerwebapp.service.ExcelService;
+import thenhat.code.managerwebapp.model.entity.Schedule;
+import thenhat.code.managerwebapp.service.entity.ExcelService;
 
 import java.util.List;
 

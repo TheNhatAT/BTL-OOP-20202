@@ -1,6 +1,6 @@
-package thenhat.code.managerwebapp.service;
+package thenhat.code.managerwebapp.service.entity;
 
-import thenhat.code.managerwebapp.model.Teacher;
+import thenhat.code.managerwebapp.model.entity.Teacher;
 
 import java.util.List;
 

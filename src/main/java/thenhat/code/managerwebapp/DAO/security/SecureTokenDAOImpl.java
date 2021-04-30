@@ -1,9 +1,9 @@
-package thenhat.code.managerwebapp.DAO;
+package thenhat.code.managerwebapp.DAO.security;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import thenhat.code.managerwebapp.model.SecureToken;
+import thenhat.code.managerwebapp.model.entity.SecureToken;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

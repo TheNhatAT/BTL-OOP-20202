@@ -1,10 +1,10 @@
-package thenhat.code.managerwebapp.service;
+package thenhat.code.managerwebapp.service.entity;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import thenhat.code.managerwebapp.DAO.TeacherDAO;
-import thenhat.code.managerwebapp.model.Teacher;
+import thenhat.code.managerwebapp.DAO.entity.TeacherDAO;
+import thenhat.code.managerwebapp.model.entity.Teacher;
 
 import java.util.List;
 

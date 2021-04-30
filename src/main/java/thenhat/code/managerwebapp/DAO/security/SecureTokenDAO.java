@@ -1,6 +1,6 @@
-package thenhat.code.managerwebapp.DAO;
+package thenhat.code.managerwebapp.DAO.security;
 
-import thenhat.code.managerwebapp.model.SecureToken;
+import thenhat.code.managerwebapp.model.entity.SecureToken;
 
 public interface SecureTokenDAO {
     void saveSecureToken(SecureToken token);

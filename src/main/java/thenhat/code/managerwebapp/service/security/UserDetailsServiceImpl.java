@@ -7,8 +7,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import thenhat.code.managerwebapp.model.Users;
-import thenhat.code.managerwebapp.service.UserService;
+import thenhat.code.managerwebapp.model.entity.Users;
+import thenhat.code.managerwebapp.service.entity.UserService;
 
 @Slf4j
 @Service("customUserService")

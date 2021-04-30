@@ -1,10 +1,10 @@
-package thenhat.code.managerwebapp.DAO;
+package thenhat.code.managerwebapp.DAO.entity;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import thenhat.code.managerwebapp.model.Teacher;
-import thenhat.code.managerwebapp.model.Class;
+import thenhat.code.managerwebapp.model.entity.Teacher;
+import thenhat.code.managerwebapp.model.entity.Class;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

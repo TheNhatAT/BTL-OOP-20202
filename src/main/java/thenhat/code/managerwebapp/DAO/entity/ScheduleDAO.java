@@ -1,7 +1,6 @@
-package thenhat.code.managerwebapp.DAO;
+package thenhat.code.managerwebapp.DAO.entity;
 
-import thenhat.code.managerwebapp.model.Class;
-import thenhat.code.managerwebapp.model.Schedule;
+import thenhat.code.managerwebapp.model.entity.Schedule;
 
 import java.util.List;
 

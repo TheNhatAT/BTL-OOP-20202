@@ -1,7 +1,6 @@
 package thenhat.code.managerwebapp.service.security;
 
-import org.springframework.security.core.token.Token;
-import thenhat.code.managerwebapp.model.SecureToken;
+import thenhat.code.managerwebapp.model.entity.SecureToken;
 
 public interface SecureTokenService {
 

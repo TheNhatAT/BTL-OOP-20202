@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import thenhat.code.managerwebapp.helper.ExcelHelper;
-import thenhat.code.managerwebapp.model.Class;
-import thenhat.code.managerwebapp.service.ClassService;
+import thenhat.code.managerwebapp.model.entity.Class;
+import thenhat.code.managerwebapp.service.entity.ClassService;
 
 import java.io.IOException;
 import java.util.List;

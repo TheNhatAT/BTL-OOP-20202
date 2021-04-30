@@ -3,8 +3,8 @@ package thenhat.code.managerwebapp.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import thenhat.code.managerwebapp.model.Teacher;
-import thenhat.code.managerwebapp.service.TeacherService;
+import thenhat.code.managerwebapp.model.entity.Teacher;
+import thenhat.code.managerwebapp.service.entity.TeacherService;
 
 import java.util.List;
 

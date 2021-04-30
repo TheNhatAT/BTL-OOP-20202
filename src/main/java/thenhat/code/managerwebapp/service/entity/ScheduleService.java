@@ -1,6 +1,6 @@
-package thenhat.code.managerwebapp.service;
+package thenhat.code.managerwebapp.service.entity;
 
-import thenhat.code.managerwebapp.model.Schedule;
+import thenhat.code.managerwebapp.model.entity.Schedule;
 
 import java.util.List;
 

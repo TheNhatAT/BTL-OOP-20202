@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.keygen.BytesKeyGenerator;
 import org.springframework.security.crypto.keygen.KeyGenerators;
 import org.springframework.stereotype.Service;
-import thenhat.code.managerwebapp.DAO.SecureTokenDAO;
-import thenhat.code.managerwebapp.model.SecureToken;
+import thenhat.code.managerwebapp.DAO.security.SecureTokenDAO;
+import thenhat.code.managerwebapp.model.entity.SecureToken;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;

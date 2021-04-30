@@ -1,6 +1,6 @@
-package thenhat.code.managerwebapp.DAO;
+package thenhat.code.managerwebapp.DAO.entity;
 
-import thenhat.code.managerwebapp.model.Class;
+import thenhat.code.managerwebapp.model.entity.Class;
 
 import java.util.List;
 

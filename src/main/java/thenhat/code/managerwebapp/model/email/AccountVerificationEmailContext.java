@@ -2,7 +2,7 @@ package thenhat.code.managerwebapp.model.email;
 
 import lombok.Data;
 import org.springframework.web.util.UriComponentsBuilder;
-import thenhat.code.managerwebapp.model.Users;
+import thenhat.code.managerwebapp.model.entity.Users;
 
 @Data
 public class AccountVerificationEmailContext extends AbstractEmailContext {

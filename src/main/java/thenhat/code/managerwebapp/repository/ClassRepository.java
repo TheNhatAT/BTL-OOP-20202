@@ -1,7 +1,7 @@
 package thenhat.code.managerwebapp.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import thenhat.code.managerwebapp.model.Schedule;
+import thenhat.code.managerwebapp.model.entity.Schedule;
 
 //-- JpaRepository’s methods: save(), findOne(), findById(), findAll(), count(), delete(), deleteById()… without implementing these methods --
 //-- update to use Hibernate after --

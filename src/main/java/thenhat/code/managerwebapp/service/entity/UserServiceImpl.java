@@ -1,15 +1,15 @@
-package thenhat.code.managerwebapp.service;
+package thenhat.code.managerwebapp.service.entity;
 
 import org.apache.commons.codec.binary.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import thenhat.code.managerwebapp.DAO.UserDAO;
+import thenhat.code.managerwebapp.DAO.entity.UserDAO;
 import thenhat.code.managerwebapp.exception.InvalidTokenException;
 import thenhat.code.managerwebapp.exception.UserAlreadyExistException;
-import thenhat.code.managerwebapp.model.SecureToken;
-import thenhat.code.managerwebapp.model.Users;
+import thenhat.code.managerwebapp.model.entity.SecureToken;
+import thenhat.code.managerwebapp.model.entity.Users;
 import thenhat.code.managerwebapp.model.email.AccountVerificationEmailContext;
 import thenhat.code.managerwebapp.service.email.EmailService;
 import thenhat.code.managerwebapp.service.security.SecureTokenService;

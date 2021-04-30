@@ -1,6 +1,6 @@
-package thenhat.code.managerwebapp.DAO;
+package thenhat.code.managerwebapp.DAO.entity;
 
-import thenhat.code.managerwebapp.model.Users;
+import thenhat.code.managerwebapp.model.entity.Users;
 
 public interface UserDAO {
     Users saveUser(Users users);

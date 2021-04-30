@@ -7,8 +7,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
-import thenhat.code.managerwebapp.model.Schedule;
-import thenhat.code.managerwebapp.model.Class;
+import thenhat.code.managerwebapp.model.entity.Schedule;
+import thenhat.code.managerwebapp.model.entity.Class;
 
 import java.io.IOException;
 import java.io.InputStream;
