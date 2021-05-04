@@ -22,20 +22,19 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Min(value = 6, message = "Password must have more than 6 characters")
+    @Min(value = 6, message = "{user.password}")
     @Column(name = "password")
     private String password;
 
-    @Size(min = 2, max = 60, message = "Size of the first name must be lie between 2 and 30")
+    @Size(min = 2, max = 60, message = "{user.first.name}")
     @Column(name = "first_name")
     private String firstName;
 
-    @Size(min = 2, max = 30, message = "Size of the last name must be lie between 2 and 30")
+    @Size(min = 2, max = 30, message = "{user.last.name}")
     @Column(name = "last_name")
     private String lastName;
 
-    @Email(message = "Email must follow the formatter: ***@***")
-    @NotBlank(message = "Email can not be null")
+    @Email(message = "{user.format.email.address}")
     @Column(name = "email_address", unique = true)
     private String emailAddress;
 

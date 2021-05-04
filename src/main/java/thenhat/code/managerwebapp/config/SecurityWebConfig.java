@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.annotation.Resource;
 
@@ -32,7 +33,7 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/**", "/index")
                 .hasAuthority("USER")
                 .and().formLogin()
-                .defaultSuccessUrl("/index", true)
+                .defaultSuccessUrl("/home", true)
                 .loginPage("/login") // default is /login with an HTTP get
                 .failureUrl("/login?error=true");
     }

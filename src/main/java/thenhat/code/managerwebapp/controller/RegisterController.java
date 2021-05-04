@@ -36,10 +36,6 @@ public class RegisterController {
     }
 
     //== REST methods ==
-    @GetMapping("/welcome")
-    public String welcome() {
-        return ViewNames.WELCOME_PAGE;
-    }
 
     @GetMapping
     public String getRegistrationView(@ModelAttribute("user") Users user) {
