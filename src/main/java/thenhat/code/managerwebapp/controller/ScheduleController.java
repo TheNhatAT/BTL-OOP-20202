@@ -29,14 +29,13 @@ public class ScheduleController {
     //== REST methods ==
     @PostMapping("/file")
     public List<Schedule> uploadFile(@RequestParam("file") MultipartFile file) {
-        if(ExcelHelper.hasExelFormat(file)) {
+        if (ExcelHelper.hasExelFormat(file)) {
             try {
                 log.info("start() upload");
                 List<Schedule> scheduleList = ExcelHelper.excelToLichThi(file.getInputStream());
                 scheduleService.addAllSchedules(scheduleList);
                 return scheduleList;
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 return null;
             }
         }
@@ -44,22 +43,17 @@ public class ScheduleController {
     }
 
     //== upload and update ==
-    @PostMapping
+    @PostMapping("/add")
     public Schedule uploadSchedule(@RequestBody Schedule schedule) {
+        log.info("add lich thi = {}", schedule);
+        scheduleService.addSchedule(schedule);
+        return schedule;
+    }
 
-        log.info("lichThi from client = {}", schedule.toString());
-        //-- invoke when use addLichThi --
-        if(schedule.getId() == null) {
-            log.info("add lich thi = {}", schedule.toString());
-
-            //-- cần fix chỗ add (set them field LopHoc vào LichThi) -- đã fix --
-            scheduleService.addSchedule(schedule);
-        } else {
-            log.info("update lich thi = {}", schedule.toString());
-
-            //-- cần fix chỗ update (thay remove = merge)  -- Đã fix --
-            scheduleService.updateSchedule(schedule);
-        }
+    @PutMapping("/update")
+    public Schedule updateSchedule(@RequestBody Schedule schedule) {
+        log.info("update lich thi = {}", schedule.toString());
+        scheduleService.updateSchedule(schedule);
         return schedule;
     }
 
@@ -91,12 +85,12 @@ public class ScheduleController {
 
     @GetMapping("/list")
     public List<Schedule> getListSchedule() {
-            List<Schedule> listSchedule = scheduleService.getListSchedule();
+        List<Schedule> listSchedule = scheduleService.getListSchedule();
 
-            if (listSchedule.isEmpty()) {
-                log.info("List is empty");
-                return null;
-            }
+        if (listSchedule.isEmpty()) {
+            log.info("List is empty");
+            return null;
+        }
         return listSchedule;
     }
 
@@ -105,7 +99,7 @@ public class ScheduleController {
     public List<Schedule> getListScheduleOfClass(@PathVariable("code") Long maLop) {
         List<Schedule> list = scheduleService.getListScheduleOfCodeClass(maLop);
 
-        if(list.isEmpty()) {
+        if (list.isEmpty()) {
             log.info("Lop Hoc chua co lich thi");
             return null;
         }
@@ -117,29 +111,17 @@ public class ScheduleController {
     public List<Schedule> getListScheduleOfTeacher(@PathVariable("id") Long id) {
         List<Schedule> list = scheduleService.getListScheduleOfTeacherId(id);
 
-        if(list.isEmpty()) {
+        if (list.isEmpty()) {
             log.info("Giang Vien chua co lich thi");
             return null;
         }
         return list;
     }
 
-    //== need to code ==
+    //== need to merge ==
     /**
      * API: Phân công lịch thi tự động
      * API: DUyệt lịch thi tự động
      */
-//    @GetMapping("/checkPhanCong")
-//    public Vector<Integer> checkPhanCong() {
-//        Vector<Integer> success = new Vector<Integer>();
-//        success.add(0);
-//        success.add(0);
-//        if (lichThiService.checkGiangVien() != success) {
-//            return lichThiService.checkGiangVien();
-//        }
-//        if (lichThiService.checkSV() != success) {
-//            return lichThiService.checkSV();
-//        }
-//        return success;
-//    }
+
 }

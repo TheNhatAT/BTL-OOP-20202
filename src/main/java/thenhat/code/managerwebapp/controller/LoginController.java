@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @Controller
-@CrossOrigin("http://localhost:8080") //-- for configuring allowed origins --
+@CrossOrigin(origins = "http://localhost:8080") //-- for configuring allowed origins --
 @RequestMapping
 public class LoginController {
     @GetMapping("/login")

@@ -36,19 +36,20 @@ public class TeacherController {
         return teacherService.getTeacherById(id);
     }
 
-    //== bug, can't access this url ==
-    @PostMapping("/update")
-    public Teacher updateTeacher(@RequestBody Teacher teacher) {
-        //== cần xử lý thêm các trường hợp ngoại lệ ==
-        if (teacher.getId() == null) {
-            log.info("add giang vien = {}", teacher);
-            teacherService.addTeacher(teacher);
-        } else {
-            log.info("update giang vien = {}", teacher);
-            teacherService.updateTeacher(teacher);
-        }
+    @PostMapping("/add")
+    public Teacher addTeacher(@RequestBody Teacher teacher) {
+        log.info("add giang vien = {}", teacher);
+        teacherService.addTeacher(teacher);
         return teacher;
     }
+
+    @PutMapping("/update")
+    public Teacher updateTeacher(@RequestBody Teacher teacher) {
+        log.info("update giang vien = {}", teacher);
+        teacherService.updateTeacher(teacher);
+        return teacher;
+    }
+
 
     @GetMapping("/remove/{id}")
     public Teacher removeTeacher(@PathVariable("id") Long id) {

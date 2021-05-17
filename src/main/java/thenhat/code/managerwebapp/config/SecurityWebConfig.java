@@ -30,7 +30,7 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests().antMatchers("/login", "/register")
                 .permitAll()
-                .antMatchers("/api/**", "/index")
+                .antMatchers("/api/**", "/home")
                 .hasAuthority("USER")
                 .and().formLogin()
                 .defaultSuccessUrl("/home", true)

@@ -31,7 +31,6 @@ public class ClassController {
         if (ExcelHelper.hasExelFormat(file)) {
             try {
                 log.info("start() upload");
-
                 //==  file excel cần cột tham chiếu về giảng viên theo id==//
                 List<Class> classList = ExcelHelper.exelToLopHoc(file.getInputStream());
                 classService.addAllClass(classList);
@@ -40,7 +39,6 @@ public class ClassController {
                 log.info("upload failed!!!");
                 return null;
             }
-
         }
         return null;
     }
@@ -48,13 +46,15 @@ public class ClassController {
     //== ok ==
     @PostMapping("/add")
     public Class uploadClass(@RequestBody Class aClass) {
-        if (aClass.getMaLop() == null) {
-            log.info("add lop hoc = {}", aClass);
-            classService.addClass(aClass);
-        } else {
-            log.info("update lop hoc = {}", aClass);
-            classService.updateClass(aClass);
-        }
+        log.info("add lop hoc = {}", aClass);
+        classService.addClass(aClass);
+        return aClass;
+    }
+
+    @PutMapping("/update")
+    public Class updateClass(@RequestBody Class aClass) {
+        log.info("update lop hoc = {}", aClass);
+        classService.updateClass(aClass);
         return aClass;
     }
 

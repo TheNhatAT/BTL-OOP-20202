@@ -13,7 +13,6 @@ import java.util.Set;
 @Table(name = "users")
 @Setter
 @Getter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class Users {
@@ -22,7 +21,7 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Min(value = 6, message = "{user.password}")
+    @Size(min = 6, message = "{user.password}")
     @Column(name = "password")
     private String password;
 
