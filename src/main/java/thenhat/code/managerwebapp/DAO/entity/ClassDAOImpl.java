@@ -21,7 +21,7 @@ public class ClassDAOImpl implements ClassDAO {
     //== methods ==
     @Override
     public void addAllClass(List<Class> classList) {
-        log.info("start() add all lop hoc");
+        log.info("start() add all lop hoc ");
         for (Class aClass : classList) {
             em.persist(aClass);
         }
@@ -39,8 +39,8 @@ public class ClassDAOImpl implements ClassDAO {
 
     @Override
     public void addClass(Class aClass, Long id) {
-        log.info("start() add lop hoc = {} with giang vien has id = {}", aClass.toString(), id);
         aClass.setTeacher(em.find(Teacher.class, id));
+        log.info("class = {}", aClass);
         em.persist(aClass);
         log.info("finish() add lop hoc with giang vien");
         em.close();
@@ -55,9 +55,9 @@ public class ClassDAOImpl implements ClassDAO {
     }
 
     @Override
-    public Class getClassByCodeClass(Long maLop) {
+    public List<Class> getClassByCodeClass(Long maLop) {
         log.info("start() get lop hoc which has ma lop = {}", maLop);
-        Class aClass = em.find(Class.class, maLop);
+        List<Class> aClass = em.createNativeQuery("SELECT * FROM class WHERE ma_lop = " + maLop, Class.class).getResultList();
         log.info("finish() get lop hoc");
         em.close();
         return aClass;

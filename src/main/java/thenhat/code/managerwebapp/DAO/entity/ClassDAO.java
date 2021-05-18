@@ -14,7 +14,7 @@ public interface ClassDAO {
 
     void updateClass(Class aClass);
 
-    Class getClassByCodeClass(Long maLop);
+    List<Class> getClassByCodeClass(Long maLop);
 
     List<Class> getAllClasses();
 
