@@ -28,19 +28,19 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //== for real ==
-//        http.csrf().disable()
-//                .authorizeRequests().antMatchers("/login", "/register")
-//                .permitAll()
-//                .antMatchers("/api/**", "/home")
-//                .hasAuthority("ADMIN")
-//                .and().formLogin()
-//                .defaultSuccessUrl("/home", true)
-//                .loginPage("/login") // default is /login with an HTTP get
-//                .failureUrl("/login?error=true");
-
-        //== for test API ==
         http.csrf().disable()
-                .authorizeRequests().anyRequest().permitAll();
+                .authorizeRequests().antMatchers("/login", "/register")
+                .permitAll()
+                .antMatchers("/api/**", "/home")
+                .hasAuthority("ADMIN")
+                .and().formLogin()
+                .defaultSuccessUrl("/home", true)
+                .loginPage("/login") // default is /login with an HTTP get
+                .failureUrl("/login?error=true");
+
+//        //== for test API ==
+//        http.csrf().disable()
+//                .authorizeRequests().anyRequest().permitAll();
     }
 
 
