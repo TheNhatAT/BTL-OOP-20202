@@ -13,7 +13,7 @@ public interface ClassService {
 
     void updateClass(Class aClass);
 
-    List<Class> getClassByCodeClass(Long maLop);
+    Class getClassByCodeClass(Long maLop);
 
     List<Class> getAllClasses();
 

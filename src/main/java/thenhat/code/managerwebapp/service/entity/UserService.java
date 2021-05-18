@@ -1,7 +1,7 @@
 package thenhat.code.managerwebapp.service.entity;
 
-import thenhat.code.managerwebapp.error.exception.InvalidTokenException;
-import thenhat.code.managerwebapp.error.exception.UserAlreadyExistException;
+import thenhat.code.managerwebapp.exception.InvalidTokenException;
+import thenhat.code.managerwebapp.exception.UserAlreadyExistException;
 import thenhat.code.managerwebapp.model.entity.Users;
 
 public interface UserService {

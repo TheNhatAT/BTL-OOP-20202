@@ -1,4 +1,4 @@
-package thenhat.code.managerwebapp.error.exception;
+package thenhat.code.managerwebapp.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

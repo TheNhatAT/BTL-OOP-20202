@@ -2,7 +2,6 @@ package thenhat.code.managerwebapp.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import thenhat.code.managerwebapp.helper.ExcelHelper;
@@ -60,22 +59,21 @@ public class ScheduleController {
 
     @PostMapping("/remove/{id}")
     public Schedule removeSchedule(@PathVariable("id") int id) {
-        log.info("remove schedule with id = {}", id);
+
         Schedule schedule = scheduleService.getScheduleById((long) id);
         scheduleService.removeScheduleById((long) id);
+
         return schedule;
     }
 
-    //== need test
-    @PostMapping("/addLichThiWithGiamThi/{id}")
-    public Schedule addScheduleWithTeacher_1(@RequestBody Schedule schedule, @PathVariable("id") Long id) {
+    @PostMapping("/addLichThiWithGiamThi")
+    public Schedule addScheduleWithTeacher_1(@RequestBody Schedule schedule, @RequestParam("id") Long id) {
         scheduleService.addSchedule(schedule, id);
         return scheduleService.getScheduleById(schedule.getId());
     }
 
-    //== need test
-    @PostMapping("/addLichThiWith2GiamThi/{id_1}/{id_2}")
-    public Schedule addScheduleWithTeacher_2(@RequestBody Schedule schedule, @PathVariable("id_1") Long id_1, @PathVariable("id_2") Long id_2) {
+    @PostMapping("/addLichThiWith2GiamThi")
+    public Schedule addScheduleWithTeacher_2(@RequestBody Schedule schedule, @RequestParam("id_1") Long id_1, @RequestParam("id_2") Long id_2) {
         scheduleService.addSchedule(schedule, id_1, id_2);
         return scheduleService.getScheduleById(schedule.getId());
     }
@@ -96,6 +94,7 @@ public class ScheduleController {
         return listSchedule;
     }
 
+    //== chua debug do data chua co ==
     @GetMapping("/class/{code}")
     public List<Schedule> getListScheduleOfClass(@PathVariable("code") Long maLop) {
         List<Schedule> list = scheduleService.getListScheduleOfCodeClass(maLop);
@@ -107,6 +106,7 @@ public class ScheduleController {
         return list;
     }
 
+    //== chua debug do data chua co ==
     @GetMapping("/teacher/{id}")
     public List<Schedule> getListScheduleOfTeacher(@PathVariable("id") Long id) {
         List<Schedule> list = scheduleService.getListScheduleOfTeacherId(id);

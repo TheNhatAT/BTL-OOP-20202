@@ -40,7 +40,7 @@ public class ClassServiceImpl implements ClassService {
     }
 
     @Override
-    public List<Class> getClassByCodeClass(Long maLop) {
+    public Class getClassByCodeClass(Long maLop) {
         return this.classDAO.getClassByCodeClass(maLop);
     }
 

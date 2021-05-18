@@ -7,8 +7,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
-import thenhat.code.managerwebapp.model.entity.Class;
 import thenhat.code.managerwebapp.model.entity.Schedule;
+import thenhat.code.managerwebapp.model.entity.Class;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -53,10 +53,12 @@ public class ExcelHelper {
                     rowNumber++;
                     continue;
                 }
-                Iterator<Cell> cellsInRow = currentRow.iterator();
-                Schedule schedule = new Schedule();
-                int cellIndex = 0;
 
+                Iterator<Cell> cellsInRow = currentRow.iterator();
+
+                Schedule schedule = new Schedule();
+
+                int cellIndex = 0;
                 while (cellsInRow.hasNext()) {
                     Cell currentCell = cellsInRow.next();
                     switch (cellIndex) {
@@ -137,46 +139,41 @@ public class ExcelHelper {
             //-- read row by row --
             while (rows.hasNext()) {
                 Row currentRow = rows.next();
+
                 //-- skip header --
-                if (rowNumber <= 2) {
-                    rowNumber++;
+                if (rowNumber <= 1) {
+                    rowNumber ++;
                     continue;
                 }
-                Iterator<Cell> cellsInRow = currentRow.iterator();
-                Class aClass = new Class();
-                int cellIndex = 0;
 
+                Iterator<Cell> cellsInRow = currentRow.iterator();
+
+                Class aClass = new Class();
+
+                int cellIndex = 0;
                 while (cellsInRow.hasNext()) {
                     Cell currentCell = cellsInRow.next();
                     switch (cellIndex) {
                         case 0:
                             aClass.setKyHoc(currentCell.getStringCellValue());
                             break;
-                        case 2:
-                            if(currentCell.getStringCellValue() == "") {
-                                log.info("cellIndex = {}, value = {}", cellIndex, currentCell.getStringCellValue());
-                                break;
-                            }
-                            aClass.setMaLop(Long.valueOf(currentCell.getStringCellValue()));
-                            break;
                         case 5:
                             aClass.setTenLop(currentCell.getStringCellValue());
+                            break;
+                        case 2:
+                            //log.info("value of this cell is {}", currentCell.getStringCellValue());
+                            aClass.setMaLop(Long.valueOf(currentCell.getStringCellValue()));
                             break;
                         case 18:
                             try {
                                 aClass.setSoLuongSV(Integer.valueOf(currentCell.getStringCellValue()));
-                                break;
                             } catch (Exception e) {
                                 break;
                             }
-                        default:
                             break;
                     }
                     cellIndex++;
-                }
-                if(aClass.getMaLop() != null) {
                     classList.add(aClass);
-                    log.info("class = {}", aClass);
                 }
                 workbook.close();
             }

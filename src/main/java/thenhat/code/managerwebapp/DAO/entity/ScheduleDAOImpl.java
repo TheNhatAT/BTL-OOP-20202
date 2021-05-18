@@ -100,12 +100,11 @@ public class ScheduleDAOImpl implements ScheduleDAO {
     @Override
     public List<Schedule> getListScheduleOfTeacherId(Long id) {
         log.info("start() get list lich thi of giang vien has id = {}", id);
-//        List<Class> classList = em.createNativeQuery("SELECT * FROM class WHERE giang_vien_id = " + id.toString(), Class.class).getResultList();
-//        List<Schedule> list = new ArrayList<>();
-//        for (Class aClass : classList) {
-//            list.addAll(getListScheduleOfCodeClass(aClass.getMaLop()));
-//        }
-        List<Schedule> list = em.createNativeQuery("select * from schedule where (giam_thi_1_id = " + id + "or giam_thi_2_id = " + id + ")", Schedule.class).getResultList();
+        List<Class> classList = em.createNativeQuery("SELECT * FROM class WHERE giang_vien_id = " + id.toString(), Class.class).getResultList();
+        List<Schedule> list = new ArrayList<>();
+        for (Class aClass : classList) {
+            list.addAll(getListScheduleOfCodeClass(aClass.getMaLop()));
+        }
         log.info("finish() get list lich thi of giang vien has id = {}", id);
         return list;
     }

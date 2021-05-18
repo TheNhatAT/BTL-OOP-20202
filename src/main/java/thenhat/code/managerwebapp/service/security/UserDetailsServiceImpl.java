@@ -34,19 +34,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         //-- check account is verified --
         boolean enabled = !customer.isAccountVerified();
         //-- UserDetails store user info, allow non-security info (email, phone,...) --
-        UserDetails user;
-        if(customer.getEmailAddress().compareTo("nhat.nt194347@sis.hust.edu.vn") == 0){
-            log.info("customer = {}", customer.getEmailAddress());
-             user = User.withUsername(customer.getEmailAddress())
-                    .password(customer.getPassword())
-                    .disabled(enabled)
-                    .authorities("ADMIN").build();
-        }
-        else{
-         user = User.withUsername(customer.getEmailAddress())
+        UserDetails user = User.withUsername(customer.getEmailAddress())
                 .password(customer.getPassword())
                 .disabled(enabled)
-                .authorities("USER").build();}
+                .authorities("USER").build();
         return user;
     }
 }

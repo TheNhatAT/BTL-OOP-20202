@@ -60,11 +60,12 @@ public class ClassController {
 
     //== ok ==
     @GetMapping("/{code}")
-    public List<Class> getClass(@PathVariable("code") Long maLop) {
+    public Class getClass(@PathVariable("code") Long maLop) {
         log.info("start() get lop hoc with ma lop = {}", maLop);
         return classService.getClassByCodeClass(maLop);
     }
 
+    //== ok ==
     @GetMapping
     public List<Class> getAllClass() {
         log.info("start() get all lop hoc");
@@ -77,8 +78,8 @@ public class ClassController {
         return classService.getListClassOfTeacherId(id);
     }
 
-    @PostMapping("/add/{id}")
-    public List<Class> addClassWithClass(@RequestBody Class aClass, @PathVariable("id") Long id) {
+    @PostMapping("/teacher/{id}")
+    public Class addClassWithClass(@RequestBody Class aClass, @PathVariable("id") Long id) {
         classService.addClass(aClass, id);
         return classService.getClassByCodeClass(aClass.getMaLop());
     }

@@ -3,7 +3,6 @@ package thenhat.code.managerwebapp.model.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 
@@ -15,10 +14,6 @@ import javax.persistence.*;
 public class Class {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "class_id", columnDefinition = "bigint")
-    private Long id;
-
     @Column(name = "ma_lop")
     private Long maLop;
 

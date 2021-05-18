@@ -1,4 +1,4 @@
-package thenhat.code.managerwebapp.error.exception;
+package thenhat.code.managerwebapp.exception;
 
 public class InvalidTokenException extends Exception {
 
