@@ -1,5 +1,6 @@
 package thenhat.code.managerwebapp.service.entity;
 
+import thenhat.code.managerwebapp.model.entity.Assigment;
 import thenhat.code.managerwebapp.model.entity.Schedule;
 
 import java.util.List;
@@ -24,4 +25,12 @@ public interface ScheduleService {
      List<Schedule> getListScheduleOfCodeClass(Long maLop);
 
      List<Schedule> getListScheduleOfTeacherId(Long id);
+
+    List<Schedule> getListScheduleOfInstitute(String institute);
+
+    List<String> getAllInstitute();
+
+    List<Assigment> AutoAssignment();
+
+    void updateTeacher(List<Assigment> assigments);
 }

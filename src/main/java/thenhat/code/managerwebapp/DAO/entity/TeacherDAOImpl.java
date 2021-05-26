@@ -21,9 +21,8 @@ public class TeacherDAOImpl implements TeacherDAO {
     @Override
     public List<Teacher> getAllTeacher() {
         log.info("start() get all giang vien");
-        List<Teacher> list = em.createNativeQuery("SELECT * FROM teacher", Teacher.class).getResultList();
+        List<Teacher> list = em.createNativeQuery("SELECT * FROM teacher WHERE (is_deleted != true or is_deleted is null)", Teacher.class).getResultList();
         log.info("finish() get all giang vien");
-        em.close();
         return list;
     }
 
@@ -32,7 +31,6 @@ public class TeacherDAOImpl implements TeacherDAO {
         log.info("start() get giang vien which has id = {}", id);
         Teacher teacher = em.find(Teacher.class, id);
         log.info("finish() get giang vien = {}", teacher.toString());
-        em.close();
         return teacher;
     }
 
@@ -41,7 +39,6 @@ public class TeacherDAOImpl implements TeacherDAO {
         log.info("start() update giang vien = {} to giang vien = {}", em.find(Teacher.class, teacher.getId()));
         em.merge(teacher);
         log.info("finish() update");
-        em.close();
     }
 
     @Override
@@ -49,14 +46,24 @@ public class TeacherDAOImpl implements TeacherDAO {
         log.info("start() add giang vien = {}", teacher.toString());
         em.persist(teacher);
         log.info("finish() add");
-        em.close();
     }
 
     @Override
     public void removeTeacherById(Long id) {
         log.info("start() remove giang vien = {} from DB", em.find(Teacher.class, id));
-        em.remove(em.find(Teacher.class, id));
-        em.close();
+        Teacher teacher = em.find(Teacher.class, id);
+        teacher.setIsDeleted(true);
+        em.merge(teacher);
         log.info("finish() remove");
+    }
+
+    //== method for algorithm ==
+    @Override
+    public List<Teacher> getListTeacherOfInstitute(String institute) {
+        log.info("start() get list giang vien cua vien {}", institute);
+        List<Teacher> teacherList = em.createNativeQuery("SELECT * FROM teacher WHERE (is_deleted != true or is_deleted is null) and vien = " + "'" + institute + "'", Teacher.class).getResultList();
+        em.close();
+        log.info("start() get list giang vien cua vien {}", institute);
+        return teacherList;
     }
 }

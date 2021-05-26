@@ -21,6 +21,7 @@ public class ManagerwebappApplication {
         return new OpenAPI()
                 .components(new Components())
                 .info(new Info().title("ManagerSchedule API").version(appVersion)
+                        .description("API of ManagerSchedule Web App")
                         .license(new License().name("Apache 2.0").url("http://springdoc.org")));
     }
 }

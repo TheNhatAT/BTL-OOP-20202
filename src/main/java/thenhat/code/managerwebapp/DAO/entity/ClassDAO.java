@@ -18,8 +18,12 @@ public interface ClassDAO {
 
     List<Class> getAllClasses();
 
-    void removeClass(Long maLop);
+    void removeClassByCode(Long maLop);
+
+    void removeClassById(Long id);
 
     List<Class> getListClassOfTeacherId(Long id);
+
+    Class getClassById(Long id);
 
 }

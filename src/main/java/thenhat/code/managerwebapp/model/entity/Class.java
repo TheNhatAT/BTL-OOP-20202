@@ -5,15 +5,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "class")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Class {
+public class Class implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "class_id", columnDefinition = "bigint")
+    private Long id;
+
     @Column(name = "ma_lop")
     private Long maLop;
 
@@ -32,7 +37,13 @@ public class Class {
     @Column(name = "kinh_phi")
     private Double kinhPhi;
 
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
     @ManyToOne
     @JoinColumn(name = "giang_vien_id", foreignKey = @ForeignKey(name = "giang_vien_id_fk"))
     private Teacher teacher;
+
+    @Transient
+    private Long giangVienId;
 }

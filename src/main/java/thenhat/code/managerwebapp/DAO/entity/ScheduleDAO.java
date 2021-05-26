@@ -26,4 +26,9 @@ public interface ScheduleDAO {
     List<Schedule> getListScheduleOfCodeClass(Long maLop);
 
     List<Schedule> getListScheduleOfTeacherId(Long id);
+
+    //== for algorithm
+    List<Schedule> getListScheduleOfInstitute(String institute);
+
+    List<String> getListInstitude();
 }

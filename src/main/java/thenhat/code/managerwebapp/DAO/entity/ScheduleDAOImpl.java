@@ -28,16 +28,15 @@ public class ScheduleDAOImpl implements ScheduleDAO {
         log.info("start() add lich thi in DAO = {}", schedule.toString());
         em.persist(schedule);
         log.info("finish add lich thi");
-        em.close();
     }
 
     @Override
     public void addSchedule(Schedule schedule, Long id) {
         log.info("start() add lich thi in DAO = {} with 1 giam thi has id = {}", schedule.toString(), id);
         schedule.setGiamThi1(em.find(Teacher.class, id));
-        em.persist(schedule);
+        em.merge(schedule);
+//        em.persist(schedule);
         log.info("finish add lich thi with 1 giam thi");
-        em.close();
     }
 
     @Override
@@ -45,9 +44,8 @@ public class ScheduleDAOImpl implements ScheduleDAO {
         log.info("start() add lich thi in DAO = {} with giam thi 1 has id_1 = {}, id_2 = {}", schedule.toString(), id_1, id_2);
         schedule.setGiamThi1(em.find(Teacher.class, id_1));
         schedule.setGiamThi2(em.find(Teacher.class, id_2));
-        em.persist(schedule);
+        em.merge(schedule);
         log.info("finish add lich thi with giam thi");
-        em.close();
     }
 
     @Override
@@ -57,20 +55,17 @@ public class ScheduleDAOImpl implements ScheduleDAO {
             em.persist(lichthi);
         }
         log.info("List Lich Thi saved");
-        em.close();
     }
 
     @Override
     public void updateSchedule(Schedule schedule) {
         em.merge(schedule);
-        em.close();
         log.info("updated lich thi = {}", schedule);
     }
 
     @Override
     public List<Schedule> getListSchedule() {
-        List<Schedule> scheduleList = em.createNativeQuery("SELECT * FROM schedule", Schedule.class).getResultList();
-        em.close();
+        List<Schedule> scheduleList = em.createNativeQuery("SELECT * FROM schedule WHERE (is_deleted != true or is_deleted is null)", Schedule.class).getResultList();
         log.info("Select all Lich Thi elements in DB");
         return scheduleList;
     }
@@ -84,28 +79,41 @@ public class ScheduleDAOImpl implements ScheduleDAO {
 
     @Override
     public void removeScheduleById(Long id) {
-        em.remove(em.find(Schedule.class, id));
-        em.close();
+        Schedule schedule = em.find(Schedule.class, id);
+        schedule.setIsDeleted(true);
+        em.merge(schedule);
     }
 
     @Override
     public List<Schedule> getListScheduleOfCodeClass(Long maLop) {
         log.info("start() get list lich thi of lop hoc has ma lop = {}", maLop);
-        List<Schedule> list = em.createNativeQuery("SELECT * FROM schedule WHERE ma_lop = " + maLop.toString(), Schedule.class).getResultList();
+        List<Schedule> list = em.createNativeQuery("SELECT * FROM schedule WHERE (is_deleted != true or is_deleted is null) and ma_lop = " + maLop.toString(), Schedule.class).getResultList();
         log.info("finish() get list lich thi of lop hoc has ma lop = {}", maLop);
-        em.close();
         return list;
     }
 
     @Override
     public List<Schedule> getListScheduleOfTeacherId(Long id) {
         log.info("start() get list lich thi of giang vien has id = {}", id);
-        List<Class> classList = em.createNativeQuery("SELECT * FROM class WHERE giang_vien_id = " + id.toString(), Class.class).getResultList();
-        List<Schedule> list = new ArrayList<>();
-        for (Class aClass : classList) {
-            list.addAll(getListScheduleOfCodeClass(aClass.getMaLop()));
-        }
+
+        List<Schedule> list = em.createNativeQuery("select * from schedule where (is_deleted != true or is_deleted is null) and (giam_thi_1_id = " + id + ") or (giam_thi_2_id = " + id + ")", Schedule.class).getResultList();
         log.info("finish() get list lich thi of giang vien has id = {}", id);
         return list;
+    }
+
+    //== method for algorithm ==
+    @Override
+    public List<Schedule> getListScheduleOfInstitute(String institute) {
+        log.info("start() get list lich thi cua viện {}", institute);
+        List<Schedule> scheduleList = em.createNativeQuery("SELECT * FROM schedule WHERE (is_deleted != true or is_deleted is null) and ten_vien = " + "'" + institute + "'", Schedule.class).getResultList();
+        log.info("finish() get list lich thi cua viện {}", institute);
+        return scheduleList;
+    }
+
+    @Override
+    public List<String> getListInstitude() {
+        List<String> institude = em.createNativeQuery("SELECT DISTINCT ten_vien FROM schedule WHERE (is_deleted != true or is_deleted is null)").getResultList();
+        log.info("institude = {}", institude);
+        return institude;
     }
 }

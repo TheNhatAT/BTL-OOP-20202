@@ -58,6 +58,9 @@ public class Schedule {
     @Column(name = "phong_thi")
     private String phongThi;
 
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
     //-- cần sử dụng one to one để liên kết với giám thị trông thi --
     //-- nâng cấp lúc sau --
     @ManyToOne
@@ -67,4 +70,11 @@ public class Schedule {
     @ManyToOne
     @JoinColumn(name = "giam_thi_2_id", foreignKey = @ForeignKey(name = "giam_thi_2_fk"))
     private Teacher GiamThi2;
+
+    //== for thymeleaf ==
+    @Transient
+    private Long giamThi1ID;
+
+    @Transient
+    private Long giamThi2ID;
 }

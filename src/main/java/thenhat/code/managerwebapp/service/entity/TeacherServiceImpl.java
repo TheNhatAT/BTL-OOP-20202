@@ -45,4 +45,9 @@ public class TeacherServiceImpl implements TeacherService {
     public void removeTeacherById(Long id) {
         this.teacherDAO.removeTeacherById(id);
     }
+
+    @Override
+    public List<Teacher> getListTeacherOfInstitute(String institute) {
+        return this.teacherDAO.getListTeacherOfInstitute(institute);
+    }
 }

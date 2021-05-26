@@ -37,7 +37,7 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/home", true)
                 .loginPage("/login") // default is /login with an HTTP get
                 .failureUrl("/login?error=true");
-
+//
 //        //== for test API ==
 //        http.csrf().disable()
 //                .authorizeRequests().anyRequest().permitAll();

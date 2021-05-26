@@ -50,8 +50,18 @@ public class ClassServiceImpl implements ClassService {
     }
 
     @Override
-    public void removeClass(Long maLop) {
-        this.classDAO.removeClass(maLop);
+    public void removeClassByCode(Long maLop) {
+        this.classDAO.removeClassByCode(maLop);
+    }
+
+    @Override
+    public void removeClassById(Long id) {
+        this.classDAO.removeClassById(id);
+    }
+
+    @Override
+    public Class getClassById(Long id) {
+        return this.classDAO.getClassById(id);
     }
 
     @Override

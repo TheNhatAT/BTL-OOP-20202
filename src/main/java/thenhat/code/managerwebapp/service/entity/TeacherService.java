@@ -14,4 +14,6 @@ public interface TeacherService {
     void addTeacher(Teacher teacher);
 
     void removeTeacherById(Long id);
+
+    List<Teacher> getListTeacherOfInstitute(String institute);
 }

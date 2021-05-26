@@ -4,8 +4,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import thenhat.code.managerwebapp.DAO.entity.ScheduleDAO;
+import thenhat.code.managerwebapp.DAO.entity.TeacherDAO;
+import thenhat.code.managerwebapp.DAO.entity.TeacherDAOImpl;
+import thenhat.code.managerwebapp.helper.Algorithm;
+import thenhat.code.managerwebapp.model.entity.Assigment;
 import thenhat.code.managerwebapp.model.entity.Schedule;
+import thenhat.code.managerwebapp.model.entity.Teacher;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -14,11 +20,14 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     //== fields ==
     private ScheduleDAO scheduleDAO;
-
+    private Algorithm algorithm;
+    private TeacherDAO teacherDAO;
     //== constructor injection ==
     @Autowired
-    public ScheduleServiceImpl(ScheduleDAO scheduleDAO) {
+    public ScheduleServiceImpl(ScheduleDAO scheduleDAO, Algorithm algorithm, TeacherDAO teacherDAO) {
         this.scheduleDAO = scheduleDAO;
+        this.algorithm = algorithm;
+        this.teacherDAO = teacherDAO;
     }
 
     //== methods ==
@@ -64,12 +73,50 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public List<Schedule> getListScheduleOfCodeClass(Long maLop) {
-       return this.scheduleDAO.getListScheduleOfCodeClass(maLop);
+        return this.scheduleDAO.getListScheduleOfCodeClass(maLop);
     }
 
     @Override
     public List<Schedule> getListScheduleOfTeacherId(Long id) {
         return this.scheduleDAO.getListScheduleOfTeacherId(id);
+    }
+
+    @Override
+    public List<Schedule> getListScheduleOfInstitute(String institute) {
+        return this.scheduleDAO.getListScheduleOfInstitute(institute);
+    }
+
+    @Override
+    public List<String> getAllInstitute() {
+        return this.scheduleDAO.getListInstitude();
+    }
+
+    @Override
+    public List<Assigment> AutoAssignment() {
+        return this.algorithm.AutoAssignment();
+    }
+
+    @Override
+    public void updateTeacher(List<Assigment> assigments) {
+        List<Schedule> list = new ArrayList<>();
+        for (int i = 0; i < assigments.size(); ++i) {
+            Assigment temp = assigments.get(i);
+            Schedule sche = this.scheduleDAO.getScheduleById(temp.getSchedules_id());
+            if (temp.getCanbo2() == null) {
+                Teacher teacher = this.teacherDAO.getTeacherById(temp.getCanbo1());
+                teacher.setTrongThi(true);
+                this.teacherDAO.updateTeacher(teacher);
+                this.scheduleDAO.addSchedule(sche, temp.getCanbo1());
+            } else {
+                Teacher teacher1 = this.teacherDAO.getTeacherById(temp.getCanbo1());
+                Teacher teacher2 = this.teacherDAO.getTeacherById(temp.getCanbo2());
+                teacher1.setTrongThi(true);
+                teacher1.setTrongThi(true);
+                this.teacherDAO.updateTeacher(teacher1);
+                this.teacherDAO.updateTeacher(teacher2);
+                this.scheduleDAO.addSchedule(sche, temp.getCanbo1(), temp.getCanbo2());
+            }
+        }
     }
 
 

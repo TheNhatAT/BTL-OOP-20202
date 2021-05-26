@@ -34,4 +34,7 @@ public class Teacher {
 
     @Column(name = "trong_thi")
     private Boolean trongThi;
+
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
 }

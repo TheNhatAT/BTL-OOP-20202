@@ -42,4 +42,12 @@ public class Users {
 
     @OneToMany(mappedBy = "user")
     private Set<SecureToken> tokens;
+
+    @Column(name = "is_enable")
+    private Boolean isEnable;
+
+    @Transient
+    private String fullName;
+    @Transient
+    private String role;
 }
