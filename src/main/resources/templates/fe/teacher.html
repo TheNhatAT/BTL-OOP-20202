@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../../static/style.css" th:href="@{/style.css}">
+</head>
+<body>
+
+<div class="menu">
+    <ul>
+        <li>
+            <a href="http://localhost:8080/home" th:href="@{http://localhost:8080/home}">
+                <button type="button">Trang chủ</button>
+            </a>
+        </li>
+        <li>
+            <a href="http://localhost:8080/api/schedules/list" th:href="@{http://localhost:8080/api/schedules/list}">
+                <button type="button"> Lịch thi</button>
+            </a>
+        </li>
+        <li>
+            <a href="http://localhost:8080/api/teachers" th:href="@{http://localhost:8080/api/teachers}">
+                <button type="button" > Giảng viên</button>
+            </a>
+        </li>
+        <li>
+            <a href="http://localhost:8080/api/classes" th:href="@{http://localhost:8080/api/classes}">
+                <button type="button"> Lớp học</button>
+            </a>
+        </li>
+
+        <li class="dropdown">
+            <a href="#">
+                <button type="button"> Input</button>
+            </a>
+
+            <div class="dropdown-content">
+                <a href="{http://localhost:8080/api/classes/add" th:href="@{http://localhost:8080/api/classes/add}">Add class</a>
+                <a href="http://localhost:8080/api/teachers/add" th:href="@{http://localhost:8080/api/teachers/add}">Add teacher</a>
+                <a href="http://localhost:8080/api/schedules/add" th:href="@{http://localhost:8080/api/schedules/add}"> Add schedule</a>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên GV</th>
+            <th>SĐT</th>
+            <th>Email</th>
+            <th>Viện</th>
+            <th>Phòng làm việc</th>
+            <th>Trông thi</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <tr th:each="teacher :${listTeachers}">
+            <th th:text="${teacher.id}"/>
+            <th th:text="${teacher.name}"/>
+            <th th:text="${teacher.phoneNumber}"/>
+            <th th:text="${teacher.emailAddress}"/>
+            <th th:text="${teacher.vien}"/>
+            <th th:text="${teacher.office}"/>
+            <th th:text="${teacher.trongThi}"/>
+            <th><a th:href="@{/api/teachers/update/{id} (id = ${teacher.id})}">
+                Edit</a></th>
+            <th><a th:href="@{/api/teachers/remove/{id} (id = ${teacher.id})}">
+                Delete</a></th>
+        </tr>
+        </thead>
+
+        <tbody id = "body-table">
+        <tr>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<script>
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../../static/style-form.css" th:href="@{/style-form.css}">
+    <link rel="stylesheet" type="text/css" href="../../static/style.css" th:href="@{/style.css}">
+</head>
+<body>
+<div class="menu">
+    <ul>
+        <li>
+            <a href="http://localhost:8080/home" th:href="@{http://localhost:8080/home}">
+                <button type="button">Trang chủ</button>
+            </a>
+        </li>
+        <li>
+            <a href="http://localhost:8080/api/schedules/list" th:href="@{http://localhost:8080/api/schedules/list}">
+                <button type="button"> Lịch thi</button>
+            </a>
+        </li>
+        <li>
+            <a href="http://localhost:8080/api/teachers" th:href="@{http://localhost:8080/api/teachers}">
+                <button type="button" > Giảng viên</button>
+            </a>
+        </li>
+        <li>
+            <a href="http://localhost:8080/api/classes" th:href="@{http://localhost:8080/api/classes}">
+                <button type="button"> Lớp học</button>
+            </a>
+        </li>
+
+        <li class="dropdown">
+            <a href="#">
+                <button type="button"> Input</button>
+            </a>
+
+            <div class="dropdown-content">
+                <a href="{http://localhost:8080/api/classes/add" th:href="@{http://localhost:8080/api/classes/add}">Add class</a>
+                <a href="http://localhost:8080/api/teachers/add" th:href="@{http://localhost:8080/api/teachers/add}">Add teacher</a>
+                <a href="http://localhost:8080/api/schedules/add" th:href="@{http://localhost:8080/api/schedules/add}"> Add schedule</a>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="form">
+    <h1>Cập nhật lịch thi</h1>
+    <form action="#" th:action="@{/api/schedules/update/{id} (id = ${schedule.id})}" th:object="${schedule}" method="POST" enctype="utf8" >
+        <div>
+            <label for="tenVien">Viện:</label>
+            <input type="text" th:field="*{tenVien}" th:value="${schedule.tenVien}" placeholder="Nhập Tên Viện" id="tenVien" required>
+        </div>
+        <div>
+            <label for="maLop">Mã lớp:</label>
+            <input type="number" th:field="*{maLop}" th:value="${schedule.maLop}" placeholder="Nhập Mã Lớp" id="maLop" required >
+        </div>
+        <div>
+            <label for="maHp">Mã HP:</label>
+            <input type="text" th:field="*{maHp}" th:value="${schedule.maHp}" placeholder="Nhập Mã Học Phần" id="maHp" required >
+        </div>
+        <div>
+            <label for="tenHp">Tên HP:</label>
+            <input type="text" th:field="*{tenHp}" th:value="${schedule.tenHp}" placeholder="Nhập Tên Học Phần" id="tenHp" required >
+        </div>
+        <div>
+            <label for="ghiChu">Ghi chú:</label>
+            <input type="text" th:field="*{ghiChu}" th:value="${schedule.ghiChu}" placeholder="Nhập Ghi Chú" id="ghiChu" >
+        </div>
+        <div>
+            <label for="tenNhom">Nhóm:</label>
+            <input type="text" th:field="*{tenNhom}" th:value="${schedule.tenNhom}" placeholder="Nhập Tên Nhóm" id="tenNhom" required >
+        </div>
+        <div>
+            <label for="dotMo">Đợt:</label>
+            <input type="text" th:field="*{dotMo}" th:value="${schedule.dotMo}" placeholder="Nhập Đợt Mở" id="dotMo" required>
+        </div>
+        <div>
+            <label for="tuan">Tuần:</label>
+            <input type="text" th:field="*{tuan}" th:value="${schedule.tuan}" placeholder="Nhập Tuần Thi" id="tuan" required >
+        </div>
+        <div>
+            <label for="thu">Thứ:</label>
+            <input type="text" th:field="*{thu}" th:value="${schedule.thu}" placeholder="Nhập Thứ Ngày" id="thu" required >
+        </div>
+        <div>
+            <label for="ngayThi">Ngày thi:</label>
+            <input type="date" th:field="*{ngayThi}" th:value="${schedule.ngayThi}" placeholder="Nhập Ngày Thi" id="ngayThi" required >
+        </div>
+        <div>
+            <label for="kipThi">Kíp thi:</label>
+            <input type="text" th:field="*{kipThi}" th:value="${schedule.kipThi}" placeholder="Nhập Kíp Thi" id="kipThi" required>
+        </div>
+        <div>
+            <label for="soLuongDk">Số lượng đăng kí:</label>
+            <input type="number" th:field="*{soLuongDk}" th:value="${schedule.soLuongDk}" placeholder="Nhập Số Lượng Đăng Ký" id="soLuongDk" required >
+        </div>
+        <div>
+            <label for="phongThi">Phòng thi:</label>
+            <input type="text" th:field="*{phongThi}" th:value="${schedule.phongThi}" placeholder="Nhập Phòng Thi" id="phongThi" required >
+        </div>
+        <div>
+            <label for="GiamThi1ID">Giám thị 1:</label>
+            <input type="number" th:field="*{giamThi1ID}" th:value="${schedule?.giamThi1?.id}" placeholder="Nhập ID của Giám Thi 1" id="GiamThi1ID"  >
+        </div>
+        <div>
+            <label for="GiamThi2ID">Giám thị 2:</label>
+            <input type="number" th:field="*{giamThi2ID}" th:value="${schedule?.giamThi2?.id}" placeholder="Nhập ID của Giám Thi 2" id="GiamThi2ID"  >
+        </div>
+
+        <div>
+            <button type="submit" >Add</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

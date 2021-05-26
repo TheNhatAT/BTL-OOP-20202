@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../../static/style.css" th:href="@{/style.css}">
+</head>
+<body>
+
+<!--Menu-->
+
+<div class="menu">
+    <ul>
+        <li>
+            <a href="http://localhost:8080/home" th:href="@{http://localhost:8080/home}">
+                <button type="button">Trang chủ</button>
+            </a>
+        </li>
+        <li>
+            <a href="http://localhost:8080/api/schedules/list" th:href="@{http://localhost:8080/api/schedules/list}">
+                <button type="button"> Lịch thi</button>
+            </a>
+        </li>
+        <li>
+            <a href="http://localhost:8080/api/teachers" th:href="@{http://localhost:8080/api/teachers}">
+                <button type="button" > Giảng viên</button>
+            </a>
+        </li>
+        <li>
+            <a href="{http://localhost:8080/api/classes" th:href="@{http://localhost:8080/api/classes}">
+                <button type="button"> Lớp học</button>
+            </a>
+        </li>
+        <li class="dropdown">
+            <a href="#">
+                <button type="button"> Input</button>
+            </a>
+            <div class="dropdown-content">
+                <a href="{http://localhost:8080/api/classes/add" th:href="@{http://localhost:8080/api/classes/add}">Add class</a>
+                <a href="http://localhost:8080/api/teachers/add" th:href="@{http://localhost:8080/api/teachers/add}">Add teacher</a>
+                <a href="http://localhost:8080/api/schedules/add" th:href="@{http://localhost:8080/api/schedules/add}"> Add schedule</a>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<!-- infor teacher-->
+
+<div class="rightcolumn">
+    <h2>Thông tin cá nhân</h2>
+    <table>
+        <tr>
+            <td>Họ và tên:</td>
+            <td><p th:text="${user.fullName}"/> </td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><p th:text="${user.emailAddress}"/> </td>
+        </tr>
+        <tr>
+            <td>Role:</td>
+            <td><p th:text="${user.role}" /></td>
+        </tr>
+    </table>
+</div>
+
+
+<script>
+
+</script>
+
+</body>
+</html>

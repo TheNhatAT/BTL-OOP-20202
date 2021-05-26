@@ -1,0 +1,109 @@
+.menu{
+    width: 100%;
+    height: 50px;
+    background-color: rgb(270, 180, 0);
+}
+.menu ul{
+    list-style: none;
+}
+.menu ul li{
+    display: inline-block;
+    float: left;
+}
+.menu ul li button{
+    background-color: rgb(350, 160, 0);
+    border:1px solid white;
+    text-decoration: none;
+    font-size: 20px;
+    height: 50px;
+    font-weight: bold;
+    color:black;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/*Thay đổi định dạng liên kết khi di chuyển chuột qua*/
+.menu a button:hover{
+    background-color: #db7093;
+    color: white;
+    font-weight: bold;
+}
+
+/*Định vị nội dung thả xuống*/
+.menu ul li.dropdown{
+    display: inline-block;
+}
+
+/*Ẩn nội dung thả xuống*/
+.dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #e9d8f4;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/*Liên kết bên trong danh sách thả xuống*/
+.dropdown-content a{
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+/*Thay đổi định dạng của liên kết thả xuống khi di chuyển chuột qua*/
+.dropdown-content a:hover {
+    background-color: #db7093;
+    color: white;
+}
+
+/*Hiển thị menu thả xuống khi di chuyển chuột qua*/
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+.rightcolumn {
+    float: right;
+    width: 25%;
+    background-color: #e9d8f4;
+    padding-left: 20px;
+}
+
+
+.HBB{
+    border-bottom: 1px solid #f4f5f6;
+    padding-bottom: 6px;
+    padding-top: 6px;
+    font-family: Aria;
+    font-size: 1.1em;
+}
+
+.table, th, td{
+    border:1px solid #868585;
+}
+.table{
+    border-collapse:collapse;
+    width: 100%;
+}
+.table th, td{
+    text-align: left;
+    padding: 10px;
+}
+.table tr:nth-child(odd){
+    background-color:#eee;
+}
+.table tr:nth-child(even){
+    background-color:white;
+}
+.table th{
+    background-color:skyblue;
+}
+#father{
+    width:400px;
+    overflow:auto;
+}
+

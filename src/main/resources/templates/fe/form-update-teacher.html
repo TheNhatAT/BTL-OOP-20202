@@ -1,0 +1,83 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../../static/style-form.css" th:href="@{/style-form.css}">
+    <link rel="stylesheet" type="text/css" href="../../static/style.css" th:href="@{/style.css}">
+</head>
+<body>
+<div class="menu">
+    <ul>
+        <li>
+            <a href="http://localhost:8080/home" th:href="@{http://localhost:8080/home}">
+                <button type="button">Trang chủ</button>
+            </a>
+        </li>
+        <li>
+            <a href="http://localhost:8080/api/schedules/list" th:href="@{http://localhost:8080/api/schedules/list}">
+                <button type="button"> Lịch thi</button>
+            </a>
+        </li>
+        <li>
+            <a href="http://localhost:8080/api/teachers" th:href="@{http://localhost:8080/api/teachers}">
+                <button type="button" > Giảng viên</button>
+            </a>
+        </li>
+        <li>
+            <a href="http://localhost:8080/api/classes" th:href="@{http://localhost:8080/api/classes}">
+                <button type="button"> Lớp học</button>
+            </a>
+        </li>
+
+        <li class="dropdown">
+            <a href="#">
+                <button type="button"> Input</button>
+            </a>
+
+            <div class="dropdown-content">
+                <a href="{http://localhost:8080/api/classes/add" th:href="@{http://localhost:8080/api/classes/add}">Add class</a>
+                <a href="http://localhost:8080/api/teachers/add" th:href="@{http://localhost:8080/api/teachers/add}">Add teacher</a>
+                <a href="http://localhost:8080/api/schedules/add" th:href="@{http://localhost:8080/api/schedules/add}"> Add schedule</a>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="form">
+    <h1>Cập nhật giảng viên</h1>
+    <form action="#" th:action="@{/api/teachers/update/{id} (id = ${teacher.id})}" th:object="${teacher}" method="POST" enctype="utf8">
+        <div>
+            <label for="name">Tên GV:</label>
+            <input type="text" th:field="*{name}" th:value="${teacher.name}" id="name" required>
+        </div>
+        <div>
+            <label for="phongNumber">SĐT:</label>
+            <input type="tel" th:field="*{phoneNumber}" th:value="${teacher.phoneNumber}" placeholder="Nhập Số Điện Thoại" id="phongNumber" required>
+        </div>
+        <div>
+            <label for="emailAddress">Email:</label>
+            <input type="email" th:field="*{emailAddress}" th:value="${teacher.emailAddress}" placeholder="Nhập Địa Chỉ Email Giảng Viên" id="emailAddress" required>
+        </div>
+        <div>
+            <label for="vien">Viện:</label>
+            <input type="text" th:field="*{vien}" th:value="${teacher.vien}" placeholder="Nhập Tên Viện Trực Thuộc" id="vien" required>
+        </div>
+        <div>
+            <label for="office">Phòng làm việc:</label>
+            <input type="text" th:field="*{office}" th:value="${teacher.office}" placeholder="Nhập Tên Phòng Làm Việc" id="office" required>
+        </div>
+        <div>
+            <label for="trongThi">Trông thi:</label>
+            <input type="checkbox" th:field="*{trongThi}" th:value="${teacher.trongThi}" placeholder="Nhập Trạng Thái Trông Thi" id="trongThi">
+        </div>
+
+        <div>
+            <button type="submit">Add</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

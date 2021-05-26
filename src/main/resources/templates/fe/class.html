@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../../static/style.css" th:href="@{/style.css}">
+</head>
+<body>
+<div class="menu">
+    <ul>
+        <li>
+            <a href="http://localhost:8080/home" th:href="@{http://localhost:8080/home}">
+                <button type="button">Trang chủ</button>
+            </a>
+        </li>
+        <li>
+            <a href="http://localhost:8080/api/schedules/list" th:href="@{http://localhost:8080/api/schedules/list}">
+                <button type="button"> Lịch thi</button>
+            </a>
+        </li>
+        <li>
+            <a href="http://localhost:8080/api/teachers" th:href="@{http://localhost:8080/api/teachers}">
+                <button type="button"> Giảng viên</button>
+            </a>
+        </li>
+        <li>
+            <a href="http://localhost:8080/api/classes" th:href="@{http://localhost:8080/api/classes}">
+                <button type="button"> Lớp học</button>
+            </a>
+        </li>
+
+        <li class="dropdown">
+            <a href="#">
+                <button type="button"> Input</button>
+            </a>
+
+            <div class="dropdown-content">
+                <a href="{http://localhost:8080/api/classes/add" th:href="@{http://localhost:8080/api/classes/add}">Add
+                    schedule</a>
+                <a href="http://localhost:8080/api/teachers/add" th:href="@{http://localhost:8080/api/teachers/add}">Add
+                    teacher</a>
+                <a href="http://localhost:8080/api/schedules/add" th:href="@{http://localhost:8080/api/schedules/add}">
+                    Add class</a>
+            </div>
+        </li>
+
+    </ul>
+</div>
+
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Mã lớp</th>
+            <th>Kỳ học</th>
+            <th>Tên lớp</th>
+            <th>Số lượng sinh viên</th>
+            <th>Tổ chức thi</th>
+            <th>Kinh phí</th>
+            <th>Giảng viên</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <tr th:each="class: ${listClasses}">
+            <th th:text="${class.maLop}"/>
+            <th th:text="${class.kyHoc}"/>
+            <th th:text="${class.tenLop}"/>
+            <th th:text="${class.soLuongSV}"/>
+            <th th:text="${class.toChucThi}"/>
+            <th th:text="${class.kinhPhi}"/>
+            <th th:text="${class.teacher}"/>
+            <th><a th:href="@{/api/classes/update/{id} (id = ${class.id})}">
+                Edit</a></th>
+            <th><a th:href="@{/api/classes/remove/{id} (id = ${class.id})}">
+                Delete</a></th>
+        </tr>
+        </thead>
+
+        <tbody id="body-table">
+        <tr>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<script>
+
+</script>
+
+</body>
+</html>
