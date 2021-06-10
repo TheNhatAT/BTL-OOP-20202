@@ -65,7 +65,7 @@ public class ScheduleDAOImpl implements ScheduleDAO {
 
     @Override
     public List<Schedule> getListSchedule() {
-        List<Schedule> scheduleList = em.createNativeQuery("SELECT * FROM schedule WHERE (is_deleted != true or is_deleted is null)", Schedule.class).getResultList();
+        List<Schedule> scheduleList = em.createNativeQuery("SELECT * FROM schedule WHERE (is_deleted != true or is_deleted is null) order by lich_thi_id", Schedule.class).getResultList();
         log.info("Select all Lich Thi elements in DB");
         return scheduleList;
     }

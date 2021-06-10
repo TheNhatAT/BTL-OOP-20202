@@ -14,12 +14,13 @@ import thenhat.code.managerwebapp.error.exception.InvalidTokenException;
 import thenhat.code.managerwebapp.error.exception.UserAlreadyExistException;
 import thenhat.code.managerwebapp.model.entity.Users;
 import thenhat.code.managerwebapp.service.entity.UserService;
+import thenhat.code.managerwebapp.util.Mappings;
 import thenhat.code.managerwebapp.util.ViewNames;
 
 import javax.validation.Valid;
 
 @Slf4j
-@CrossOrigin("http://localhost:8080")
+@CrossOrigin(Mappings.DOMAIN)
 @Controller
 @RequestMapping("/register")
 public class RegisterController {

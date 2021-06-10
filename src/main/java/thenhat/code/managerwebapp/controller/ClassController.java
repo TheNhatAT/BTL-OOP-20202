@@ -11,6 +11,7 @@ import thenhat.code.managerwebapp.model.entity.Class;
 import thenhat.code.managerwebapp.model.entity.Schedule;
 import thenhat.code.managerwebapp.service.entity.ClassService;
 import thenhat.code.managerwebapp.service.entity.TeacherService;
+import thenhat.code.managerwebapp.util.Mappings;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,7 +19,7 @@ import java.util.List;
 @Slf4j
 //@RestController
 @Controller
-@CrossOrigin("http://localhost:8080") //-- for configuring allowed origins --
+@CrossOrigin(Mappings.DOMAIN) //-- for configuring allowed origins --
 @RequestMapping("/api/classes")
 public class ClassController {
     //== fields ==

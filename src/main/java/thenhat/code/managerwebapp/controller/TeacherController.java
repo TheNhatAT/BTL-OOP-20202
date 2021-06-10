@@ -7,12 +7,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import thenhat.code.managerwebapp.model.entity.Teacher;
 import thenhat.code.managerwebapp.service.entity.TeacherService;
+import thenhat.code.managerwebapp.util.Mappings;
 
 import java.util.List;
 
 @Slf4j
 @Controller
-@CrossOrigin("http://localhost:8080") //-- for configuring allowed origins --
+@CrossOrigin(Mappings.DOMAIN) //-- for configuring allowed origins --
 @RequestMapping("/api/teachers")
 public class TeacherController {
 
@@ -35,7 +36,7 @@ public class TeacherController {
     }
     @GetMapping("/add")
     public String getTeachrInputForm(@ModelAttribute("teacher") Teacher teacher) {
-        return "/fe/form-add-teacher";
+        return "fe/form-add-teacher";
     }
     @PostMapping("/add")
     public String addTeacher(@ModelAttribute("teacher") Teacher teacher, Model model) {

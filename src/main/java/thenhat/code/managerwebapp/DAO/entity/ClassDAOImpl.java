@@ -61,7 +61,7 @@ public class ClassDAOImpl implements ClassDAO {
     @Override
     public List<Class> getAllClasses() {
         log.info("start() get all lop hoc");
-        List<Class> list = em.createNativeQuery("SELECT * FROM class WHERE (is_deleted != true or is_deleted is null)", Class.class).getResultList();
+        List<Class> list = em.createNativeQuery("SELECT * FROM class WHERE (is_deleted != true or is_deleted is null) order by class_id", Class.class).getResultList();
         log.info("finish() get all lop hoc");
         return list;
     }

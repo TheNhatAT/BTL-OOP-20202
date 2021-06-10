@@ -9,10 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import thenhat.code.managerwebapp.model.entity.Users;
 import thenhat.code.managerwebapp.service.entity.UserService;
+import thenhat.code.managerwebapp.util.Mappings;
 
 @Slf4j
 @Controller
-@CrossOrigin(origins = "http://localhost:8080") //-- for configuring allowed origins --
+@CrossOrigin(Mappings.DOMAIN) //-- for configuring allowed origins --
 @RequestMapping
 public class LoginController {
     //== field ==

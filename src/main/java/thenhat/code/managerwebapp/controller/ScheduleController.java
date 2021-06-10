@@ -11,13 +11,14 @@ import thenhat.code.managerwebapp.model.entity.Assigment;
 import thenhat.code.managerwebapp.model.entity.Schedule;
 import thenhat.code.managerwebapp.service.entity.ScheduleService;
 import thenhat.code.managerwebapp.service.entity.TeacherService;
+import thenhat.code.managerwebapp.util.Mappings;
 
 import java.io.IOException;
 import java.util.List;
 
 @Slf4j
 @Controller
-@CrossOrigin("http://localhost:8080") //-- for configuring allowed origins --
+@CrossOrigin(Mappings.DOMAIN) //-- for configuring allowed origins --
 @RequestMapping("/api/schedules")
 public class ScheduleController {
 
@@ -57,7 +58,7 @@ public class ScheduleController {
         List<Schedule> listSchedule = scheduleService.getListSchedule();
         if (listSchedule.isEmpty()) {
             log.info("List is empty");
-            return null;
+            return "fe/schedule";
         }
         model.addAttribute("listSchedules", listSchedule);
         return "fe/schedule";

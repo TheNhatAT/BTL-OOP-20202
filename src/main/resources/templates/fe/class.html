@@ -9,22 +9,22 @@
 <div class="menu">
     <ul>
         <li>
-            <a href="http://localhost:8080/home" th:href="@{http://localhost:8080/home}">
+            <a href="http://schedule.edu.vn/home" th:href="@{http://schedule.edu.vn/home}">
                 <button type="button">Trang chủ</button>
             </a>
         </li>
         <li>
-            <a href="http://localhost:8080/api/schedules/list" th:href="@{http://localhost:8080/api/schedules/list}">
+            <a href="http://schedule.edu.vn/api/schedules/list" th:href="@{http://schedule.edu.vn/api/schedules/list}">
                 <button type="button"> Lịch thi</button>
             </a>
         </li>
         <li>
-            <a href="http://localhost:8080/api/teachers" th:href="@{http://localhost:8080/api/teachers}">
+            <a href="http://schedule.edu.vn/api/teachers" th:href="@{http://schedule.edu.vn/api/teachers}">
                 <button type="button"> Giảng viên</button>
             </a>
         </li>
         <li>
-            <a href="http://localhost:8080/api/classes" th:href="@{http://localhost:8080/api/classes}">
+            <a href="http://schedule.edu.vn/api/classes" th:href="@{http://schedule.edu.vn/api/classes}">
                 <button type="button"> Lớp học</button>
             </a>
         </li>
@@ -35,11 +35,11 @@
             </a>
 
             <div class="dropdown-content">
-                <a href="{http://localhost:8080/api/classes/add" th:href="@{http://localhost:8080/api/classes/add}">Add
+                <a href="{http://schedule.edu.vn/api/classes/add" th:href="@{http://schedule.edu.vn/api/classes/add}">Add
                     schedule</a>
-                <a href="http://localhost:8080/api/teachers/add" th:href="@{http://localhost:8080/api/teachers/add}">Add
+                <a href="http://schedule.edu.vn/api/teachers/add" th:href="@{http://schedule.edu.vn/api/teachers/add}">Add
                     teacher</a>
-                <a href="http://localhost:8080/api/schedules/add" th:href="@{http://localhost:8080/api/schedules/add}">
+                <a href="http://schedule.edu.vn/api/schedules/add" th:href="@{http://schedule.edu.vn/api/schedules/add}">
                     Add class</a>
             </div>
         </li>
@@ -68,7 +68,7 @@
             <th th:text="${class.soLuongSV}"/>
             <th th:text="${class.toChucThi}"/>
             <th th:text="${class.kinhPhi}"/>
-            <th th:text="${class.teacher}"/>
+            <th th:text="${class?.teacher?.name}"/>
             <th><a th:href="@{/api/classes/update/{id} (id = ${class.id})}">
                 Edit</a></th>
             <th><a th:href="@{/api/classes/remove/{id} (id = ${class.id})}">

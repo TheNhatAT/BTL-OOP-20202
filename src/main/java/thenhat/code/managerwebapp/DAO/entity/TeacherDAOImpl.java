@@ -21,7 +21,7 @@ public class TeacherDAOImpl implements TeacherDAO {
     @Override
     public List<Teacher> getAllTeacher() {
         log.info("start() get all giang vien");
-        List<Teacher> list = em.createNativeQuery("SELECT * FROM teacher WHERE (is_deleted != true or is_deleted is null)", Teacher.class).getResultList();
+        List<Teacher> list = em.createNativeQuery("SELECT * FROM teacher WHERE (is_deleted != true or is_deleted is null) order by teacher_id", Teacher.class).getResultList();
         log.info("finish() get all giang vien");
         return list;
     }
