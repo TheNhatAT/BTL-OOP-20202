@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import thenhat.code.managerwebapp.helper.ExcelHelper;
 import thenhat.code.managerwebapp.model.entity.Assigment;
+import thenhat.code.managerwebapp.model.entity.Class;
 import thenhat.code.managerwebapp.model.entity.Schedule;
 import thenhat.code.managerwebapp.service.entity.ScheduleService;
 import thenhat.code.managerwebapp.service.entity.TeacherService;
@@ -53,16 +54,16 @@ public class ScheduleController {
         return "redirect:/api/schedules/add";
     }
 
-    @GetMapping("/list")
-    public String getListSchedule(Model model) {
-        List<Schedule> listSchedule = scheduleService.getListSchedule();
-        if (listSchedule.isEmpty()) {
-            log.info("List is empty");
-            return "fe/schedule";
-        }
-        model.addAttribute("listSchedules", listSchedule);
-        return "fe/schedule";
-    }
+//    @GetMapping("/list")
+//    public String getListSchedule(Model model) {
+//        List<Schedule> listSchedule = scheduleService.getListSchedule();
+//        if (listSchedule.isEmpty()) {
+//            log.info("List is empty");
+//            return "fe/schedule";
+//        }
+//        model.addAttribute("listSchedules", listSchedule);
+//        return "fe/schedule";
+//    }
     @GetMapping("/update/{id}")
     public String getUpdateScheduleForm(@PathVariable("id") Long id, @ModelAttribute("schedule") Schedule schedule, Model model){
         model.addAttribute("schedule", scheduleService.getScheduleById(id));
@@ -158,9 +159,14 @@ public class ScheduleController {
         return list;
     }
 
-    /**
-     * API: Phân công lịch thi tự động
-     * API: DUyệt lịch thi tự động
-     */
+   //== for paging table
+   @GetMapping("/list")
+   public String getPage(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page, Model model){
+       log.info("start() get paging schedule");
+       List<Schedule> list = scheduleService.getListSchedulePaging(page);
+       model.addAttribute("pageSchedule", list);
+       log.info("list schedule = {}", list);
+       return "paging/pagingSchedule";
+   }
 
 }

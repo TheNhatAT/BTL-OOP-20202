@@ -50,4 +50,9 @@ public class TeacherServiceImpl implements TeacherService {
     public List<Teacher> getListTeacherOfInstitute(String institute) {
         return this.teacherDAO.getListTeacherOfInstitute(institute);
     }
+
+    @Override
+    public List<Teacher> getListTeacherPaging(Integer page) {
+        return this.teacherDAO.getListTeacherPaging(page);
+    }
 }

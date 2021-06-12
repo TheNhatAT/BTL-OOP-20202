@@ -62,6 +62,11 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
+    public List<Schedule> getListSchedulePaging(Integer page) {
+        return this.scheduleDAO.getListSchedulePaging(page);
+    }
+
+    @Override
     public Schedule getScheduleById(Long id) {
         return this.scheduleDAO.getScheduleById(id);
     }

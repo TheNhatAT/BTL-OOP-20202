@@ -31,4 +31,6 @@ public interface ScheduleDAO {
     List<Schedule> getListScheduleOfInstitute(String institute);
 
     List<String> getListInstitude();
+
+    List<Schedule> getListSchedulePaging(Integer page);
 }

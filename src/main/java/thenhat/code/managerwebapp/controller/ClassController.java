@@ -69,13 +69,14 @@ public class ClassController {
         }
         return "redirect:/api/classes/add";
     }
-    @GetMapping
-    public String getAllClass(Model model) {
-        log.info("start() get all lop hoc");
-        List<Class> list = classService.getAllClasses();
-        model.addAttribute("listClasses", list);
-        return "fe/class";
-    }
+
+//    @GetMapping
+//    public String getAllClass(Model model) {
+//        log.info("start() get all lop hoc");
+//        List<Class> list = classService.getAllClasses();
+//        model.addAttribute("listClasses", list);
+//        return "fe/class";
+//    }
 
     @GetMapping("update/{id}")
     public String getUpdateScheduleForm(@PathVariable("id") Long id, @ModelAttribute("class") Class aClass, Model model){
@@ -125,11 +126,15 @@ public class ClassController {
         return classService.getClassByCodeClass(aClass.getMaLop());
     }
 
-    //== need to code ==
-    /**
-     * API: quản lý tổ chức thi
-     */
+    //== for paging table
 
-    //== done debug ==
+    @GetMapping
+    public String getPage(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page, Model model){
+        log.info("start() get paging class");
+        List<Class> list = classService.getListTeacherPaging(page);
+        model.addAttribute("pageClass", list);
+        log.info("list class = {}", list);
+        return "paging/pagingClass";
+    }
 
 }

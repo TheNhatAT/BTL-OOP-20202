@@ -99,4 +99,12 @@ public class ClassDAOImpl implements ClassDAO {
         log.info("finish() get class by id");
         return aClass;
     }
+
+    @Override
+    public List<Class> getListClassPaging(Integer page) {
+        log.info("start() get paging classes");
+        List<Class> list = em.createNativeQuery("SELECT * FROM class WHERE  (is_deleted != true or is_deleted is null) order by class_id limit 25 offset " + (page - 1) * 25, Class.class).getResultList();
+        log.info("finish() get paging classes");
+        return list;
+    }
 }

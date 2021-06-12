@@ -16,4 +16,6 @@ public interface TeacherService {
     void removeTeacherById(Long id);
 
     List<Teacher> getListTeacherOfInstitute(String institute);
+
+    List<Teacher> getListTeacherPaging(Integer page);
 }

@@ -111,6 +111,14 @@ public class ScheduleDAOImpl implements ScheduleDAO {
     }
 
     @Override
+    public List<Schedule> getListSchedulePaging(Integer page) {
+        log.info("start() get paging schedules");
+        List<Schedule> list = em.createNativeQuery("SELECT * FROM schedule WHERE  (is_deleted != true or is_deleted is null) order by lich_thi_id limit 25 offset " + (page - 1) * 25, Schedule.class).getResultList();
+        log.info("finish() get paging schedules");
+        return list;
+    }
+
+    @Override
     public List<String> getListInstitude() {
         List<String> institude = em.createNativeQuery("SELECT DISTINCT ten_vien FROM schedule WHERE (is_deleted != true or is_deleted is null)").getResultList();
         log.info("institude = {}", institude);

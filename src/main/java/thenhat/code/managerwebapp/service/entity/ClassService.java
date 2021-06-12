@@ -18,9 +18,12 @@ public interface ClassService {
     List<Class> getAllClasses();
 
     void removeClassByCode(Long maLop);
+
     void removeClassById(Long id);
 
     List<Class> getListClassOfTeacherId(Long id);
 
     Class getClassById(Long id);
+
+    List<Class> getListTeacherPaging(Integer page);
 }

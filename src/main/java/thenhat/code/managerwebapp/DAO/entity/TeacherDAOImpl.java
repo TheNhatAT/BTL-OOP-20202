@@ -3,6 +3,7 @@ package thenhat.code.managerwebapp.DAO.entity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import thenhat.code.managerwebapp.model.entity.Class;
 import thenhat.code.managerwebapp.model.entity.Teacher;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -55,6 +56,14 @@ public class TeacherDAOImpl implements TeacherDAO {
         teacher.setIsDeleted(true);
         em.merge(teacher);
         log.info("finish() remove");
+    }
+
+    @Override
+    public List<Teacher> getListTeacherPaging(Integer page) {
+        log.info("start() get paging teachers");
+        List<Teacher> list = em.createNativeQuery("SELECT * FROM teacher WHERE  (is_deleted != true or is_deleted is null) order by teacher_id limit 25 offset " + (page - 1) * 25, Teacher.class).getResultList();
+        log.info("finish() get paging teachers");
+        return list;
     }
 
     //== method for algorithm ==

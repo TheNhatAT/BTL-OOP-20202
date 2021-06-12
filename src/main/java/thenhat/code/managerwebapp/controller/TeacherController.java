@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import thenhat.code.managerwebapp.model.entity.Schedule;
 import thenhat.code.managerwebapp.model.entity.Teacher;
 import thenhat.code.managerwebapp.service.entity.TeacherService;
 import thenhat.code.managerwebapp.util.Mappings;
@@ -28,12 +29,13 @@ public class TeacherController {
 
     //== REST methods ==
     //== thymeleaf ==
-    @GetMapping
-    public String getAllTeachers(Model model) {
-        List<Teacher> list = teacherService.getAllTeachers();
-        model.addAttribute("listTeachers", list);
-        return "fe/teacher";
-    }
+
+//    @GetMapping
+//    public String getAllTeachers(Model model) {
+//        List<Teacher> list = teacherService.getAllTeachers();
+//        model.addAttribute("listTeachers", list);
+//        return "fe/teacher";
+//    }
     @GetMapping("/add")
     public String getTeachrInputForm(@ModelAttribute("teacher") Teacher teacher) {
         return "fe/form-add-teacher";
@@ -72,10 +74,15 @@ public class TeacherController {
     }
 
 
-    //== need to code ==
-    /**
-     * API: Đăng ký trông thi
-     * API: Import giang vien bằng file
-     */
-    //== done debug ==
+
+    //== for paging table
+    @GetMapping
+    public String getPage(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page, Model model){
+        log.info("start() get paging teacher");
+        List<Teacher> list = teacherService.getListTeacherPaging(page);
+        model.addAttribute("pageTeacher", list);
+        log.info("list teacher = {}", list);
+        return "paging/pagingTeacher";
+    }
+
 }

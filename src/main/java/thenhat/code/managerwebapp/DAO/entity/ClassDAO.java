@@ -26,4 +26,5 @@ public interface ClassDAO {
 
     Class getClassById(Long id);
 
+    List<Class> getListClassPaging(Integer page);
 }

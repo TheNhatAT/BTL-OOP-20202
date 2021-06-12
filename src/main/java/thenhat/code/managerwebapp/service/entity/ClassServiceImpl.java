@@ -65,6 +65,11 @@ public class ClassServiceImpl implements ClassService {
     }
 
     @Override
+    public List<Class> getListTeacherPaging(Integer page) {
+        return this.classDAO.getListClassPaging(page);
+    }
+
+    @Override
     public List<Class> getListClassOfTeacherId(Long id) {
         return this.classDAO.getListClassOfTeacherId(id);
     }
