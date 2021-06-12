@@ -79,8 +79,10 @@ public class TeacherController {
     @GetMapping
     public String getPage(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page, Model model){
         log.info("start() get paging teacher");
+        Integer pageIndex = page;
         List<Teacher> list = teacherService.getListTeacherPaging(page);
         model.addAttribute("pageTeacher", list);
+        model.addAttribute("pageIndex", pageIndex);
         log.info("list teacher = {}", list);
         return "paging/pagingTeacher";
     }

@@ -85,7 +85,7 @@
 </div>
 
 <div class="pagination" >
-  <a href="#">&laquo;</a>
+  <a th:if="${pageIndex > 1}" th:href="@{/api/classes(page = ${pageIndex - 1})}">&laquo;</a>
   <a th:href="@{/api/classes(page = '1')}">1</a>
   <a th:href="@{/api/classes(page = '2')}">2</a>
   <a th:href="@{/api/classes(page = '3')}">3</a>
@@ -96,7 +96,7 @@
   <a th:href="@{/api/classes(page = '8')}">8</a>
   <a th:href="@{/api/classes(page = '9')}">9</a>
   <a th:href="@{/api/classes(page = '10')}">10</a>
-  <a href="#">&raquo;</a>
+  <a th:href="@{/api/classes(page = ${pageIndex + 1})}">&raquo;</a>
 </div>
 
 <script>

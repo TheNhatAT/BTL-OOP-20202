@@ -163,8 +163,10 @@ public class ScheduleController {
    @GetMapping("/list")
    public String getPage(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page, Model model){
        log.info("start() get paging schedule");
+       Integer pageIndex = page;
        List<Schedule> list = scheduleService.getListSchedulePaging(page);
        model.addAttribute("pageSchedule", list);
+       model.addAttribute("pageIndex", pageIndex);
        log.info("list schedule = {}", list);
        return "paging/pagingSchedule";
    }
