@@ -44,6 +44,11 @@ public class LoginController {
 
     @GetMapping
     public String defaultPage(){
-        return "redirect:/login";
+        if(SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
+            return "redirect:/home";
+        }
+        else {
+            return "redirect:/login";
+        }
     }
 }
