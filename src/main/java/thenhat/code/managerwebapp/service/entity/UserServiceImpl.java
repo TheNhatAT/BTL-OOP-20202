@@ -58,7 +58,6 @@ public class UserServiceImpl implements UserService{
         }
         user.setAccountVerified(true);
         userDAO.updateUser(user);
-
         //== remove invalid token
         secureTokenService.removeToken(secureToken);
         return false;

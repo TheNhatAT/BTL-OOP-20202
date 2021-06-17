@@ -27,13 +27,11 @@ public class RegisterController {
 
     //== field ==
     private final UserService userService;
-    private final MessageSource messageSource;
 
     //== constructor injection ==
     @Autowired
-    public RegisterController(UserService userService, MessageSource messageSource) {
+    public RegisterController(UserService userService) {
         this.userService = userService;
-        this.messageSource = messageSource;
     }
 
     //== REST methods ==
@@ -47,23 +45,14 @@ public class RegisterController {
     @GetMapping("/verify")
     public String verifyCustomer(@RequestParam(required = false) String token, final Model model, RedirectAttributes redirAttr) {
         if (StringUtils.isEmpty(token)) {
-            //== addFlashAttribute in flash map (in user session) ==
-            redirAttr.addFlashAttribute("tokenError", messageSource.
-                    getMessage("user.registration.verification.missing.token", null, LocaleContextHolder.getLocale()));
             return "redirect:/" + ViewNames.LOGIN_PAGE;
         }
         try {
             userService.verifyUser(token);
-        } catch (InvalidTokenException e) {
-            redirAttr.addFlashAttribute("tokenError", messageSource.
-                    getMessage("user.registration.verification.invalid.token", null, LocaleContextHolder.getLocale()));
+        } catch (Exception e) {
             return "redirect:/" + ViewNames.LOGIN_PAGE;
         }
-
-        redirAttr.addFlashAttribute("verifiedAccountMsg", messageSource.
-                getMessage("user.registration.verification.success", null, LocaleContextHolder.getLocale()));
         return "redirect:/" + ViewNames.LOGIN_PAGE;
-
     }
     @PostMapping //== note: the BindingResult must be after model ==
     public String customerRegistration(@Valid @ModelAttribute("user") Users user, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
